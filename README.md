@@ -2,7 +2,7 @@
 
 This repository provides Chromium binaries compiled for AWS Lambda, compatible and tested with Playwright and Puppeteer. 
 
-It offers both `ARM_64` and `X86_64` binaries, as well as support for both Amazon Linux 2 (NodeJS 16 & 18) and Amazon Linux 2023 (NodeJS 20+).
+We offer both `ARM_64` and `X86_64` binaries, as well as support for both Amazon Linux 2 (NodeJS 16 & 18) and Amazon Linux 2023 (NodeJS 20+).
 
 ## Installation
 
