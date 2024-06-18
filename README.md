@@ -12,11 +12,76 @@ Simply configure environment variables and Playwright/Puppeteer will automatical
 
 ## Usage
 
-For automatic installation, set environment variables and Playwright/Puppeteer will automatically download compatible binaries ([examples](#examples)). For manual installation, download the zip file containing Chromium and it's required dependencies and upload to Lambda yourself.
+For automatic installation, set environment variables and Playwright/Puppeteer will automatically download compatible binaries ([examples](#examples-automatic-installation)). For manual installation, download the zip file containing Chromium and it's required dependencies and upload to Lambda yourself.
 
-## Examples
+## Examples (automatic installation)
 
-_Coming soon._
+### Usage with Playwright
+Configure the following environment variables.
+```bash
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/arm64 # (if you're on ARM64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/x86_64 # (if you're on x86_64)
+PLAYWRIGHT_BROWSERS_PATH=/tmp
+XDG_CACHE_HOME=/tmp
+HOME=/tmp
+```
+
+```javascript
+// Make sure that:
+// - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versioning).
+// - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
+// - You've set the other environment variables above.
+
+import { chromium } from "playwright-core";
+
+export const handler = async () => {
+  const install = require('playwright-core/lib/server').installBrowsersForNpmInstall;
+  await install(['chromium']);
+
+  const browser = await chromium.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process'],
+  });
+
+  const page = await browser.newPage();
+
+  // your Playwright code as usual
+}
+
+```
+
+### Usage with Puppeteer
+Configure the following environment variables.
+```bash
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/arm64 # (if you're on ARM64))
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/x86_64 # (if you're on x86_64))
+XDG_CACHE_HOME=/tmp
+PUPPETEER_CACHE_DIR=/tmp
+HOME=/tmp
+```
+
+```javascript
+// Make sure that:
+// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versioning).
+// - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
+// - You've set the other environment variables above.
+
+import puppeteer from "puppeteer";
+
+export const handler = async () => {
+  const install = require(`puppeteer/internal/node/install.js`).downloadBrowser;
+  await install()
+
+  const browser = await puppeteer.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    headless: 'shell'
+    // headless: true // use this instead if you're using Puppeteer < 22
+  });
+
+  const page = await browser.newPage();
+
+  // your Puppeteer code as usual
+}
+```
 
 ## Versioning
 
