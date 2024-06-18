@@ -22,15 +22,15 @@ _Coming soon._
 
 We aim to release compatible Chromium versions as soon as possible after official releases. However, compiling, and testing isn't free. We therefore only offer the binaries from at least 5 major versions ago for free.
 
-| Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | Download |
-| --- | --- | --- | --- |
-| `126.0.6478.x` |  | `v22.11.0`, `v22.11.1` | ... |
-| `125.0.6422.x` | `v1.44.0`, `v1.44.1` | `v22.10.0`, `v22.10.1`, `v22.9.0` | ... |
-| `124.0.6367.x` | `v1.43.0`, `v1.43.1` | `v22.7.0`, `v22.7.1`, `v22.8.0`, `v22.8.1`, `v22.8.2` | ... |
-| `123.0.6312.x` | `v1.42.0`, `v1.42.1` | `v22.6.0`, `v22.6.1`, `v22.6.2`, `v22.6.3`, `v22.6.4`, `v22.6.5` | ... |
-| `122.0.6261.x` |  | `v22.2.0`, `v22.3.0`, `v22.4.0`, `v22.4.1`, `v22.5.0` | ... |
-| `121.0.6167.x` | `v1.41.0`, `v1.41.1`, `v1.41.2` | `v21.10.0`, `v21.11.0`, `v21.9.0`, `v22.0.0`, `v22.1.0` | ... |
-| `120.0.6099.x` | `v1.40.0`, `v1.40.1` | `v21.8.0` | ... |
+| Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
+| --- | --- | --- | --- | --- |
+| `126.0.6478.x` |  | `v22.11.0`, `v22.11.1` |   |   | 
+| `125.0.6422.x` | `v1.44.0`, `v1.44.1` | `v22.10.0`, `v22.10.1`, `v22.9.0` |   |   | 
+| `124.0.6367.x` | `v1.43.0`, `v1.43.1` | `v22.7.0`, `v22.7.1`, `v22.8.0`, `v22.8.1`, `v22.8.2` |   |   | 
+| `123.0.6312.x` | `v1.42.0`, `v1.42.1` | `v22.6.0`, `v22.6.1`, `v22.6.2`, `v22.6.3`, `v22.6.4`, `v22.6.5` |   |   | 
+| `122.0.6261.x` |  | `v22.2.0`, `v22.3.0`, `v22.4.0`, `v22.4.1`, `v22.5.0` |   |   | 
+| `121.0.6167.x` | `v1.41.0`, `v1.41.1`, `v1.41.2` | `v21.10.0`, `v21.11.0`, `v21.9.0`, `v22.0.0`, `v22.1.0` | [Amazon Linux 2](https://github.com/chromium-for-lambda/binaries/releases/tag/arm64-amazon-linux-2-chromium-121.0.6167)  |   | 
+| `120.0.6099.x` | `v1.40.0`, `v1.40.1` | `v21.8.0` | [Amazon Linux 2](https://github.com/chromium-for-lambda/binaries/releases/tag/arm64-amazon-linux-2-chromium-120.0.6099)  |   | 
 
 ## Support
 
