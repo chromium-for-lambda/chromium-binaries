@@ -28,7 +28,7 @@ HOME=/tmp
 
 ```javascript
 // Make sure that:
-// - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versioning).
+// - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
 // - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
 // - You've set the other environment variables above.
 
@@ -61,7 +61,7 @@ HOME=/tmp
 
 ```javascript
 // Make sure that:
-// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versioning).
+// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
 // - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
 // - You've set the other environment variables above.
 
@@ -83,7 +83,7 @@ export const handler = async () => {
 }
 ```
 
-## Versioning
+## Versions
 
 We aim to release compatible Chromium versions as soon as possible after official releases. However, compiling, and testing isn't free. We therefore only offer the binaries from at least 5 major versions ago for free.
 
