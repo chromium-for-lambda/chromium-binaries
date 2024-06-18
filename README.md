@@ -88,7 +88,6 @@ export const handler = async () => {
 We aim to release compatible Chromium versions as soon as possible after official releases. However, compiling, and testing isn't free. We therefore only offer the binaries from at least 5 major versions ago for free.
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
-| Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
 | `126.0.6478` |  | `v22.11.0`, `v22.11.1`, `v22.11.2` | AL2 is not yet available<br/>AL2023 is not yet available | AL2 is not yet available<br/>AL2023 is not yet available | 
 | `125.0.6422` | `v1.44.0`, `v1.44.1` | `v22.10.0`, `v22.10.1`, `v22.9.0` | AL2 is not yet available<br/>AL2023 is not yet available | AL2 is not yet available<br/>AL2023 is not yet available | 
