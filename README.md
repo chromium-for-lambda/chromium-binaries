@@ -46,7 +46,6 @@ HOME=/tmp
 // Make sure that:
 // - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
 // - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
-// - You've set the other environment variables above.
 
 import { chromium } from "playwright-core";
 
@@ -79,7 +78,6 @@ HOME=/tmp
 // Make sure that:
 // - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
 // - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
-// - You've set the other environment variables above.
 
 import puppeteer from "puppeteer";
 
