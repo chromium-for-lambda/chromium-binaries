@@ -36,8 +36,10 @@ We aim to release compatible Chromium versions as soon as possible after officia
 ### Usage with Playwright
 Configure the following environment variables.
 ```bash
-PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/arm64 # (if you're on ARM64)
-PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/x86_64 # (if you're on x86_64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 & ARM64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 & ARM64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 x86_64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 x86_64)
 PLAYWRIGHT_BROWSERS_PATH=/tmp
 XDG_CACHE_HOME=/tmp
 HOME=/tmp
@@ -46,7 +48,7 @@ HOME=/tmp
 ```javascript
 // Make sure that:
 // - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
-// - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
+// - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST to https://files.chromiumforlambda.org/<amazon-linux-version>/<architecture>
 
 import { chromium } from "playwright-core";
 
@@ -68,8 +70,10 @@ export const handler = async () => {
 ### Usage with Puppeteer
 Configure the following environment variables.
 ```bash
-PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/arm64 # (if you're on ARM64))
-PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/x86_64 # (if you're on x86_64))
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 & ARM64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 & ARM64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 x86_64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 x86_64)
 XDG_CACHE_HOME=/tmp
 PUPPETEER_CACHE_DIR=/tmp
 HOME=/tmp
@@ -78,7 +82,7 @@ HOME=/tmp
 ```javascript
 // Make sure that:
 // - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
-// - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL to https://files.chromiumforlambda.org/arm64 or https://files.chromiumforlambda.org/x86_64
+// - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL to https://files.chromiumforlambda.org/<amazon-linux-version>/<architecture>
 
 import puppeteer from "puppeteer";
 
