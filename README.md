@@ -41,14 +41,12 @@ PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-lin
 PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
 PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
 PLAYWRIGHT_BROWSERS_PATH=/tmp
-XDG_CACHE_HOME=/tmp
-HOME=/tmp
 ```
 
 ```javascript
 // Make sure that:
 // - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
-// - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST to https://files.chromiumforlambda.org/<amazon-linux-version>/<architecture>
+// - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST and process.env.PLAYWRIGHT_BROWSERS_PATH.
 
 import { chromium } from "playwright-core";
 
@@ -74,15 +72,13 @@ PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/a
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
-XDG_CACHE_HOME=/tmp
 PUPPETEER_CACHE_DIR=/tmp
-HOME=/tmp
 ```
 
 ```javascript
 // Make sure that:
 // - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
-// - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL to https://files.chromiumforlambda.org/<amazon-linux-version>/<architecture>
+// - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL and process.env.PUPPETEER_CACHE_DIR.
 
 import puppeteer from "puppeteer";
 
