@@ -104,7 +104,7 @@ We thoroughly test our binaries before publishing. But feel free to [create an i
 
 ## FAQ
 ### Am I supposed to just trust your binaries? Where is the script to compile for myself?
-With [our pro plan](https://pro.chromiumforlambda.org) you get read access to an extra GitHub repository where we track the scripts to compile Chromium.
+With [our pro plan](https://pro.chromiumforlambda.org) you get read access to an extra GitHub repository where we keep and update the scripts to compile Chromium from scratch.
 
 ### What is the difference between automatic and manual installation?
 Automatic installation uses environment variables to configure Playwright/Puppeteer to download Lambda-compatible binaries. Manual installation requires downloading the zip file containing required dependencies and uploading to Lambda manually.
