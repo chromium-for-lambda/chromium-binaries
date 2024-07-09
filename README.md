@@ -103,6 +103,9 @@ export const handler = async () => {
 We thoroughly test our binaries before publishing. But feel free to [create an issue](https://github.com/chromium-for-lambda/binaries/issues) if you experience unexpected behaviour.
 
 ## FAQ
+## Got an example codebase that is actually using this?
+Yes. Please take a look at [here](https://github.com/chromium-for-lambda/playwright-screenshot/blob/main/src/index.ts).
+
 ### Am I supposed to just trust your binaries? Where is the script to compile for myself?
 With [our pro plan](https://pro.chromiumforlambda.org) you get read access to an extra GitHub repository where we keep and update the scripts to compile Chromium from scratch.
 
