@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { ChromiumBuilderStack } from '../lib/chromium-builder-stack';
+import { TrustStack } from '../lib/trust-stack';
 
 const app = new cdk.App();
 new ChromiumBuilderStack(app, 'ChromiumBuilderStack', {
@@ -19,3 +20,5 @@ new ChromiumBuilderStack(app, 'ChromiumBuilderStack', {
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+
+new TrustStack(app, "TrustStack", { repositoryConfig: [{ owner: 'chromium-for-lambda', repo: 'chromium-binaries', filter: 'ref:refs/heads/main' }] });
