@@ -138,7 +138,7 @@ export class ChromiumBuilderStack extends cdk.Stack {
       vpc,
     });
 
-    const binariesBucket = new Bucket(this, "Binaries")
+    const binariesBucket = new Bucket(this, "Binaries", { versioned: true })
 
     const runners = new GitHubRunners(this, 'Runners', {
       setupAccess: LambdaAccess.noAccess(),
