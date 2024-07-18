@@ -36,7 +36,7 @@ runs:
     - run: patch -p1 <"${GITHUB_WORKSPACE}/assets/patches/clang/414b7c3275b3dd71405e73f5f9ed43cfcf4421d7.patch1"
       shell: bash
       working-directory: /home/runner/src/third_party/llvm
-      if: ${{ inputs.al_version == 'al2' }}
+      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
     - run: ./tools/clang/scripts/build.py --skip-checkout --without-android --without-fuchsia --use-system-cmake --host-cc /bin/clang --host-cxx /bin/clang++ --with-ml-inliner-model=''
       shell: bash
       working-directory: /home/runner/src
