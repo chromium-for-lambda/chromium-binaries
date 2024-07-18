@@ -1,0 +1,46 @@
+name: Deploy Runner
+
+permissions:
+  id-token: write
+  contents: read
+
+on: workflow_dispatch
+  # push:
+  #   branches:
+  #   - main
+
+concurrency:
+  group: ${{ github.workflow }}
+
+jobs:
+  deploy_runner_stack:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v4
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: "npm"        
+    - name: Install dependencies
+      run: npm ci        
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ vars.AWS_GITHUB_ACTIONS_ROLE }}
+        aws-region: ${{ vars.AWS_TARGET_REGION }}
+    - name: cdk synth
+      uses: tj-actions/aws-cdk@v4
+      with:
+        cdk_subcommand: "synth"
+        cdk_stack: "ChromiumBuilderStack"
+    - name: Deploy RunnerStack (via CDK)
+      uses: tj-actions/aws-cdk@v4
+      with:
+        cdk_subcommand: "deploy"
+        cdk_stack: "ChromiumBuilderStack"
+        cdk_extra_args: >-
+          --progress events
+          --require-approval never
+          --parameters environment=${{ secrets.ENVIRONMENT }}
