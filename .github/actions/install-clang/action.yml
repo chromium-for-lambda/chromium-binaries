@@ -29,7 +29,14 @@ runs:
       shell: bash
       working-directory: /home/runner/src
       if: ${{ inputs.architecture == 'arm64' }}
-    - run: ./tools/clang/scripts/build.py --without-android --without-fuchsia --with-ml-inliner-model=''
+    - run: ./tools/clang/scripts/build.py --skip-build --without-android --without-fuchsia --with-ml-inliner-model=''
+      shell: bash
+      working-directory: /home/runner/src
+      if: ${{ inputs.architecture == 'x86' }}
+    - run: patch -p1 <"${GITHUB_WORKSPACE}/assets/patches/clang/414b7c3275b3dd71405e73f5f9ed43cfcf4421d7.patch"
+      shell: bash
+      working-directory: /home/runner/src/third_party/llvm
+    - run: ./tools/clang/scripts/build.py --skip-checkout --without-android --without-fuchsia --with-ml-inliner-model=''
       shell: bash
       working-directory: /home/runner/src
       if: ${{ inputs.architecture == 'x86' }}
