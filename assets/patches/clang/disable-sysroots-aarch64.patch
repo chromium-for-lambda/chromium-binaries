@@ -1,8 +1,8 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 15e91526c4..89e773d6b8 100755
+index 3bd95b0b11..23f78b8465 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -808,7 +808,7 @@ def main():
+@@ -801,7 +801,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -11,7 +11,7 @@ index 15e91526c4..89e773d6b8 100755
    projects = 'clang;lld;clang-tools-extra'
    if args.bolt:
      projects += ';bolt'
-@@ -897,19 +897,6 @@ def main():
+@@ -878,19 +878,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
@@ -31,14 +31,14 @@ index 15e91526c4..89e773d6b8 100755
    if sys.platform == 'win32':
      AddGnuWinToPath()
  
-@@ -1181,52 +1168,15 @@ def main():
+@@ -1190,52 +1177,15 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
 -    runtimes_triples_args['i386-unknown-linux-gnu'] = {
 -        "args": [
 -            'CMAKE_SYSROOT=%s' % sysroot_i386,
--            # TODO(https://crbug.com/1374690): pass proper flags to i386 tests so they compile correctly
+-            # TODO(crbug.com/40242553): pass proper flags to i386 tests so they compile correctly
 -            'LLVM_INCLUDE_TESTS=OFF',
 -        ],
 -        "profile":
