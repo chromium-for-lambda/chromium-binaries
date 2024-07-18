@@ -1,16 +1,16 @@
 diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
-index f10dc3f56b..0b9fb4aec5 100755
+index f86a288b2d..7c13850c70 100755
 --- a/tools/rust/build_rust.py
 +++ b/tools/rust/build_rust.py
-@@ -687,11 +687,6 @@ def main():
-         return 1
+@@ -670,11 +670,6 @@ def main():
+     args, rest = parser.parse_known_args()
  
      debian_sysroot = None
 -    if sys.platform.startswith('linux') and not args.sync_for_gnrt:
 -        # Fetch sysroot we build rustc against. This ensures a minimum supported
 -        # host (not Chromium target). Since the rustc linux package is for
 -        # x86_64 only, that is the sole needed sysroot.
--        debian_sysroot = DownloadDebianSysroot('amd64')
+-        debian_sysroot = DownloadDebianSysroot('amd64', args.skip_checkout)
  
      # Require zlib compression.
      if sys.platform == 'win32':
