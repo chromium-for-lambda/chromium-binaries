@@ -21,4 +21,10 @@ new ChromiumBuilderStack(app, 'ChromiumBuilderStack', {
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
 
-new TrustStack(app, "TrustStack", { repositoryConfig: [{ owner: 'chromium-for-lambda', repo: 'chromium-binaries', filter: 'ref:refs/heads/main' }] });
+new TrustStack(app, "TrustStack", {
+  repositoryConfig: [{
+    owner: process.env.GITHUB_REPOSITORY?.split('/')[0] || "repository-owner",
+    repo: process.env.GITHUB_REPOSITORY?.split('/')[1] || "repository-name",
+    filter: 'ref:refs/heads/main'
+  }]
+});
