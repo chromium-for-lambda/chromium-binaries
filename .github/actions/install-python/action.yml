@@ -1,0 +1,22 @@
+name: Install Python
+description: Install Python
+runs:
+  using: composite
+  steps:
+    - name: Update env
+      shell: bash
+      run: echo "PYENV_ROOT=${HOME}/.pyenv" >> $GITHUB_ENV
+    - name: Clone pyenv
+      shell: bash
+      run: git clone --depth=1 https://github.com/pyenv/pyenv.git "${PYENV_ROOT}"
+    - name: Update path
+      shell: bash
+      run: echo "${PYENV_ROOT}/bin:${PYENV_ROOT}/shims" >> $GITHUB_PATH
+    - name: Install Python
+      shell: bash
+      run: |
+        pyenv install ${PYTHON_VERSION}
+        pyenv global ${PYTHON_VERSION}
+    - name: Install Python packages
+      shell: bash
+      run: pip3 install httplib2 google.auth requests

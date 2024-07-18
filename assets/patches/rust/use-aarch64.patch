@@ -1,0 +1,13 @@
+diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
+index f10dc3f56b..d25ef26763 100755
+--- a/tools/rust/build_rust.py
++++ b/tools/rust/build_rust.py
+@@ -528,7 +528,7 @@ def RustTargetTriple(build_mac_arm=False):
+     elif sys.platform == 'win32':
+         return 'x86_64-pc-windows-msvc'
+     else:
+-        return 'x86_64-unknown-linux-gnu'
++        return 'aarch64-unknown-linux-gnu'
+ 
+ 
+ # Fetch or build the LLVM libraries, for the host machine and when

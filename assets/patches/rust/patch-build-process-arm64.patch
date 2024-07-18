@@ -1,0 +1,12 @@
+diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
+index d8ce592e52..7b7bf23155 100755
+--- a/tools/rust/build_rust.py
++++ b/tools/rust/build_rust.py
+@@ -521,6 +521,7 @@ def BuildLLVMLibraries(skip_build):
+             '--with-ml-inliner-model=',
+             # Not using this in Rust yet, see also crbug.com/1476464.
+             '--without-zstd',
++            '--use-system-cmake', '--host-cc=/bin/clang', '--host-cxx=/bin/clang++', '--skip-checkout'
+         ]
+         if sys.platform.startswith('linux'):
+             build_cmd.append('--without-android')

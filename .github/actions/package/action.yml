@@ -1,0 +1,65 @@
+name: Package
+description: Package Chromium
+inputs:
+  architecture:
+    required: true
+    type: string
+  al_version:
+    required: true
+    type: string
+runs:
+  using: composite
+  steps:
+    - name: Determine version
+      shell: bash
+      run: echo "VERSION=$(sed --regexp-extended 's~[^0-9]+~~g' chrome/VERSION | tr '\n' '.' | sed 's~[.]$~~')" >> $GITHUB_ENV
+      working-directory: /home/runner/src
+    - run: |
+        mkdir "${HOME}/build"
+        strip -o "${HOME}/build/chrome" out/Default/chrome
+        strip -o "${HOME}/build/chrome_crashpad_handler" out/Default/chrome_crashpad_handler
+        strip -o "${HOME}/build/libEGL.so" out/Default/libEGL.so
+        strip -o "${HOME}/build/libGLESv2.so" out/Default/libGLESv2.so
+        strip -o "${HOME}/build/libvulkan.so.1" out/Default/libvulkan.so.1
+        strip -o "${HOME}/build/libvk_swiftshader.so" out/Default/libvk_swiftshader.so
+        strip -o "${HOME}/build/headless_shell" out/Default/headless_shell
+        cp /usr/lib64/libdbus-1.so.3 "${HOME}/build" # check if needed
+        cp /usr/lib64/liblzma.so.5 "${HOME}/build"
+        cp /usr/lib64/libnss3.so "${HOME}/build"
+        cp /usr/lib64/libsmime3.so "${HOME}/build"
+        cp /usr/lib64/libsoftokn3.so "${HOME}/build"
+        cp /usr/lib64/libsystemd.so.0 "${HOME}/build"
+        cp -r out/Default/MEIPreload "${HOME}/build"
+        cp out/Default/chrome_100_percent.pak "${HOME}/build"
+        cp out/Default/chrome_200_percent.pak "${HOME}/build"
+        cp -r out/Default/locales "${HOME}/build"
+        cp -r out/Default/resources "${HOME}/build"
+        cp out/Default/resources.pak "${HOME}/build"
+        cp out/Default/product_logo_48.png "${HOME}/build"
+        cp out/Default/vk_swiftshader_icd.json "${HOME}/build"
+        cp out/Default/xdg-mime "${HOME}/build"
+        cp out/Default/xdg-settings "${HOME}/build"
+      shell: bash
+      working-directory: /home/runner/src
+    - run: |
+        cp /usr/lib64/libdw.so.1 "${HOME}/build"
+        cp /usr/lib64/libelf.so.1 "${HOME}/build"
+        cp /usr/lib64/libgcrypt.so.11 "${HOME}/build"
+        cp /usr/lib64/libgpg-error.so.0 "${HOME}/build"
+        cp /usr/lib64/liblz4.so.1 "${HOME}/build"
+        cp /usr/lib64/libsqlite3.so.0 "${HOME}/build"
+      shell: bash
+      working-directory: /home/runner/src
+      if: ${{ inputs.al_version == 'al2' }}
+    - run: |
+        cp /usr/lib64/libnssutil3.so "${HOME}/build"
+        cp /usr/lib64/libexpat.so.1 "${HOME}/build"
+        cp /usr/lib64/libfreebl3.so "${HOME}/build"
+        cp /usr/lib64/libfreeblpriv3.so "${HOME}/build"
+        cp /usr/lib64/libnspr4.so "${HOME}/build"
+        cp /usr/lib64/libplc4.so "${HOME}/build"
+        cp /usr/lib64/libplds4.so "${HOME}/build"
+      shell: bash
+      working-directory: /home/runner/src
+      if: ${{ inputs.al_version == 'al2023' }}
+    

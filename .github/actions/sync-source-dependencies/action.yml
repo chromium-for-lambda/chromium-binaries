@@ -1,0 +1,24 @@
+name: Sync source dependencies
+description: Sync source dependencies
+inputs:
+  architecture:
+    required: true
+    type: string
+  al_version:
+    required: true
+    type: string
+runs:
+  using: composite
+  steps:
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/dependencies/disable-sysroots-download.patch"
+      shell: bash
+      working-directory: /home/runner/src
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/dependencies/disable-reclient-dep.patch"
+      shell: bash
+      working-directory: /home/runner/src
+      if: ${{ inputs.architecture == 'arm64' }}
+    - run: cp "${GITHUB_WORKSPACE}/assets/gclient.txt" /home/runner/.gclient
+      shell: bash
+    - run: gclient sync -D --force --reset --no-history
+      shell: bash
+      working-directory: /home/runner/src

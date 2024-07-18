@@ -1,0 +1,14 @@
+name: Install NodeJS
+description: Install NodeJS
+runs:
+  using: composite
+  steps:
+    - run: |
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        nvm install 20.11.0
+        cd $HOME/src/third_party/node/linux && \
+          rm -rf node-linux-x64 && \
+          ln -s $HOME/.nvm/versions/node/v20.11.0 node-linux-x64
+      shell: bash

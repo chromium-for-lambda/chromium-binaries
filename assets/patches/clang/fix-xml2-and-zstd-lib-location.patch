@@ -1,0 +1,22 @@
+diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
+index ef2049be18..9e052fad25 100755
+--- a/tools/clang/scripts/build.py
++++ b/tools/clang/scripts/build.py
+@@ -385,7 +385,7 @@ def BuildLibXml2():
+   if sys.platform == 'win32':
+     libxml2_lib = os.path.join(dirs.lib_dir, 'libxml2s.lib')
+   else:
+-    libxml2_lib = os.path.join(dirs.lib_dir, 'libxml2.a')
++    libxml2_lib = os.path.join(dirs.install_dir, 'lib64', 'libxml2.a')
+   extra_cmake_flags = [
+       '-DLLVM_ENABLE_LIBXML2=FORCE_ON',
+       '-DLIBXML2_INCLUDE_DIR=' + dirs.include_dir.replace('\\', '/'),
+@@ -462,7 +462,7 @@ def BuildZStd():
+   if sys.platform == 'win32':
+     zstd_lib = os.path.join(dirs.lib_dir, 'zstd_static.lib')
+   else:
+-    zstd_lib = os.path.join(dirs.lib_dir, 'libzstd.a')
++    zstd_lib = os.path.join(dirs.install_dir, 'lib64', 'libzstd.a')
+   extra_cmake_flags = [
+       '-DLLVM_ENABLE_ZSTD=ON',
+       '-DLLVM_USE_STATIC_ZSTD=ON',

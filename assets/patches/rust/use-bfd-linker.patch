@@ -1,0 +1,24 @@
+diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
+index d8ce592e52..c9fecce0fc 100755
+--- a/tools/rust/build_rust.py
++++ b/tools/rust/build_rust.py
+@@ -394,17 +394,8 @@ class XPy:
+             # This is critical for stage 1 onward since we need to link libs
+             # with LLVM bitcode. It is also good for a hermetic build in
+             # general.
+-            self._env['RUSTFLAGS_BOOTSTRAP'] += ' -Clink-arg=-fuse-ld=lld'
+-            self._env['RUSTFLAGS_NOT_BOOTSTRAP'] += ' -Clink-arg=-fuse-ld=lld'
+-
+-        # The `--undefined-version` flag is needed due to a bug in libtest:
+-        # https://github.com/rust-lang/rust/issues/105967. The flag does
+-        # not exist on Mac or Windows.
+-        if sys.platform.startswith('linux'):
+-            self._env['RUSTFLAGS_BOOTSTRAP'] += (
+-                ' -Clink-arg=-Wl,--undefined-version')
+-            self._env['RUSTFLAGS_NOT_BOOTSTRAP'] += (
+-                ' -Clink-arg=-Wl,--undefined-version')
++            self._env['RUSTFLAGS_BOOTSTRAP'] += ' -Clink-arg=-fuse-ld=bfd'
++            self._env['RUSTFLAGS_NOT_BOOTSTRAP'] += ' -Clink-arg=-fuse-ld=bfd'
+ 
+         # Rustdoc should use our clang linker as well, as we pass flags that
+         # the system linker may not understand.

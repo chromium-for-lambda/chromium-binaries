@@ -1,0 +1,24 @@
+name: Clone source
+description: Clone source code
+runs:
+  using: composite
+  steps:
+    - name: Clone source code
+      shell: bash
+      run: git clone --depth=1 https://github.com/chromium/chromium.git --branch $(<${GITHUB_WORKSPACE}/chromium-version) --single-branch --quiet "${HOME}/src"
+    - name: Clone depot tools
+      shell: bash
+      run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools --quiet "${HOME}/depot_tools"
+    - name: Checkout matching depot tools
+      shell: bash
+      run: |
+        cd "${HOME}/src"
+        COMMIT_DATE="$(git log -n 1 --pretty=format:%ci)"
+        cd "${HOME}/depot_tools"
+        git checkout --quiet $(git rev-list -n 1 --before="$COMMIT_DATE" main)
+    - name: Update env
+      shell: bash
+      run: echo "DEPOT_TOOLS_UPDATE=0" >> $GITHUB_ENV
+    - name: Update path
+      shell: bash
+      run: echo "${HOME}/depot_tools" >> $GITHUB_PATH

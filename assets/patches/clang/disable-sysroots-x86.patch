@@ -1,0 +1,87 @@
+diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
+index 880407b491..9471fc8cd1 100755
+--- a/tools/clang/scripts/build.py
++++ b/tools/clang/scripts/build.py
+@@ -808,7 +808,7 @@ def main():
+   cxxflags = []
+   ldflags = []
+ 
+-  targets = 'AArch64;ARM;LoongArch;Mips;PowerPC;RISCV;SystemZ;WebAssembly;X86'
++  targets = 'X86'
+   projects = 'clang;lld;clang-tools-extra'
+   if args.bolt:
+     projects += ';bolt'
+@@ -891,19 +891,6 @@ def main():
+     if sys.platform.startswith('linux'):
+       base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
+ 
+-  if sys.platform.startswith('linux'):
+-    sysroot_amd64 = DownloadDebianSysroot('amd64')
+-    sysroot_i386 = DownloadDebianSysroot('i386')
+-    sysroot_arm = DownloadDebianSysroot('arm')
+-    sysroot_arm64 = DownloadDebianSysroot('arm64')
+-
+-    # Add the sysroot to base_cmake_args.
+-    if platform.machine() == 'aarch64':
+-      base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_arm64)
+-    else:
+-      # amd64 is the default toolchain.
+-      base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_amd64)
+-
+   if sys.platform == 'win32':
+     AddGnuWinToPath()
+ 
+@@ -1175,53 +1162,12 @@ def main():
+   runtimes_triples_args = {}
+ 
+   if sys.platform.startswith('linux'):
+-    runtimes_triples_args['i386-unknown-linux-gnu'] = {
+-        "args": [
+-            'CMAKE_SYSROOT=%s' % sysroot_i386,
+-            # TODO(https://crbug.com/1374690): pass proper flags to i386 tests so they compile correctly
+-            'LLVM_INCLUDE_TESTS=OFF',
+-        ],
+-        "profile":
+-        True,
+-        "sanitizers":
+-        True,
+-    }
+     runtimes_triples_args['x86_64-unknown-linux-gnu'] = {
+         "args": [
+-            'CMAKE_SYSROOT=%s' % sysroot_amd64,
+         ],
+         "profile": True,
+         "sanitizers": True,
+     }
+-    # Using "armv7a-unknown-linux-gnueabhihf" confuses the compiler-rt
+-    # builtins build, since compiler-rt/cmake/builtin-config-ix.cmake
+-    # doesn't include "armv7a" in its `ARM32` list.
+-    # TODO(thakis): It seems to work for everything else though, see try
+-    # results on
+-    # https://chromium-review.googlesource.com/c/chromium/src/+/3702739/4
+-    # Maybe it should work for builtins too?
+-    runtimes_triples_args['armv7-unknown-linux-gnueabihf'] = {
+-        "args": [
+-            'CMAKE_SYSROOT=%s' % sysroot_arm,
+-            # Can't run tests on x86 host.
+-            'LLVM_INCLUDE_TESTS=OFF',
+-        ],
+-        "profile":
+-        True,
+-        "sanitizers":
+-        True,
+-    }
+-    runtimes_triples_args['aarch64-unknown-linux-gnu'] = {
+-        "args": [
+-            'CMAKE_SYSROOT=%s' % sysroot_arm64,
+-            # Can't run tests on x86 host.
+-            'LLVM_INCLUDE_TESTS=OFF',
+-        ],
+-        "profile":
+-        True,
+-        "sanitizers":
+-        True,
+-    }
+   elif sys.platform == 'win32':
+     sysroot = os.path.dirname(os.path.dirname(GetWinSDKDir()))
+     runtimes_triples_args['i386-pc-windows-msvc'] = {

@@ -1,0 +1,20 @@
+diff --git a/DEPS b/DEPS
+index 7d6eee5e1a..5338b9031b 100644
+--- a/DEPS
++++ b/DEPS
+@@ -584,15 +584,6 @@ deps = {
+     'dep_type': 'cipd',
+     'condition': 'host_os == "win"',
+   },
+-  'src/buildtools/reclient': {
+-    'packages': [
+-      {
+-        'package': Var('reclient_package') + '${{platform}}',
+-        'version': Var('reclient_version'),
+-      }
+-    ],
+-    'dep_type': 'cipd',
+-  },
+ 
+   # We don't know target_cpu at deps time. At least until there's a universal
+   # binary of httpd-php, pull both intel and arm versions in DEPS and then pick

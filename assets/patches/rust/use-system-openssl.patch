@@ -1,0 +1,19 @@
+diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
+index f10dc3f56b..468a1a3219 100755
+--- a/tools/rust/build_rust.py
++++ b/tools/rust/build_rust.py
+@@ -705,14 +705,6 @@ def main():
+     else:
+         libxml2_dirs = None
+ 
+-    # TODO(crbug.com/1271215): OpenSSL is somehow already present on the Windows
+-    # builder, but we should change to using a package from 3pp when it is
+-    # available.
+-    if (sys.platform != 'win32' and not args.build_mac_arm
+-            and not args.sync_for_gnrt):
+-        # Building cargo depends on OpenSSL.
+-        AddOpenSSLToEnv(args.build_mac_arm)
+-
+     xpy = XPy(zlib_path, libxml2_dirs, args.build_mac_arm, debian_sysroot,
+               args.verbose)
+ 

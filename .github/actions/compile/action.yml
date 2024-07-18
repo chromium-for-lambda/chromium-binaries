@@ -1,0 +1,44 @@
+name: Compile
+description: Compile Chromium
+inputs:
+  architecture:
+    required: true
+    type: string
+  al_version:
+    required: true
+    type: string
+runs:
+  using: composite
+  steps:
+    # - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/ifunc-header-patch.patch"
+    #   shell: bash
+    #   working-directory: /home/runner/src  
+    #   if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/memory-tagging-not-supported.patch"
+      shell: bash
+      working-directory: /home/runner/src  
+      if: ${{ inputs.al_version == 'al2' }}
+    - name: Create output dir
+      shell: bash
+      run: mkdir out/Default
+      working-directory: /home/runner/src
+    - name: Configure the build
+      shell: bash
+      run: cp "${GITHUB_WORKSPACE}/assets/headless_shell_args.gn" out/Default/args.gn
+      working-directory: /home/runner/src
+    - name: Set up the build
+      run: gn gen out/Default
+      shell: bash
+      working-directory: /home/runner/src
+    - name: Build headless_shell
+      run: autoninja -C out/Default headless_shell
+      shell: bash
+      working-directory: /home/runner/src
+    - name: Configure the build
+      shell: bash
+      run: cp "${GITHUB_WORKSPACE}/assets/chrome_args.gn" out/Default/args.gn
+      working-directory: /home/runner/src
+    - name: Build Chrome
+      run: autoninja -C out/Default chrome
+      shell: bash
+      working-directory: /home/runner/src
