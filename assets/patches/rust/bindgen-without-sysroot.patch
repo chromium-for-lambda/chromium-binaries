@@ -1,0 +1,20 @@
+diff --git a/tools/rust/build_bindgen.py b/tools/rust/build_bindgen.py
+index b2c4b6814e..4c7476c417 100755
+--- a/tools/rust/build_bindgen.py
++++ b/tools/rust/build_bindgen.py
+@@ -185,15 +185,6 @@ def main():
+     env['LD'] = linker
+     env['RUSTFLAGS'] += f' -Clinker={linker}'
+ 
+-    if sys.platform.startswith('linux'):
+-        # We use these flags to avoid linking with the system libstdc++.
+-        sysroot = DownloadDebianSysroot('amd64')
+-        sysroot_flag = f'--sysroot={sysroot}'
+-        env['CFLAGS'] += f' {sysroot_flag}'
+-        env['CXXFLAGS'] += f' {sysroot_flag}'
+-        env['LDFLAGS'] += f' {sysroot_flag}'
+-        env['RUSTFLAGS'] += f' -Clink-arg={sysroot_flag}'
+-
+     if ncursesw_dir:
+         env['CFLAGS'] += f' -I{ncursesw_dir}/include'
+         env['CXXFLAGS'] += f' -I{ncursesw_dir}/include'

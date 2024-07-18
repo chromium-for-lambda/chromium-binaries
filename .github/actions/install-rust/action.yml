@@ -16,6 +16,9 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/dont-use-sysroot.patch"
       shell: bash
       working-directory: /home/runner/src
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/bindgen-without-sysroot.patch"
+      shell: bash
+      working-directory: /home/runner/src
     # - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/fix-typo.patch"
     #   shell: bash
     #   working-directory: /home/runner/src
