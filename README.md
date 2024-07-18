@@ -1,3 +1,5 @@
+[![Build Chromium](https://github.com/chromium-for-lambda/chromium-binaries/actions/workflows/build-chromium.yml/badge.svg)](https://github.com/chromium-for-lambda/chromium-binaries/actions/workflows/build-chromium.yml)
+
 # Chromium Binaries for AWS Lambda
 
 This repository provides Chromium binaries compiled for AWS Lambda, compatible and tested with Playwright and Puppeteer. 
