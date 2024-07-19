@@ -62,7 +62,7 @@ runs:
       shell: bash
       working-directory: /home/runner/src
       if: ${{ inputs.al_version == 'al2023' }}
-    - run: zip -r "${VERSION}-${RUNNER_LABEL/,/-}.zip" "${HOME}/build"
+    - run: zip -r "chromium-${VERSION}-${RUNNER_LABEL/,/-}.zip" "${HOME}/build"
       shell: bash
-    - run: aws s3 cp "${VERSION}-${RUNNER_LABEL/,/-}.zip" "s3://${BINARIES_BUCKET}"
+    - run: aws s3 cp "chromium-${VERSION}-${RUNNER_LABEL/,/-}.zip" "s3://${BINARIES_BUCKET}"
       shell: bash
