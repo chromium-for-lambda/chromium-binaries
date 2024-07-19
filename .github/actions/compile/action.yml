@@ -22,6 +22,10 @@ runs:
       shell: bash
       working-directory: /home/runner/src  
       if: ${{ inputs.al_version == 'al2' }}
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/fix-v8-unused-function.v8-patch"
+      shell: bash
+      working-directory: /home/runner/src/v8
+      if: ${{ inputs.al_version == 'al2' }}
     - name: Create output dir
       shell: bash
       run: mkdir out/Default
