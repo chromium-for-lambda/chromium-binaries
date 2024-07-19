@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-chromium:
-    timeout-minutes: 720
+    timeout-minutes: 1440
     strategy:
       fail-fast: false
       matrix:
