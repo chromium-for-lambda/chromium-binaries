@@ -3,7 +3,7 @@
 set -e
 
 CHROMIUM_VERSION=$(<chromium-version)
-DIR="chromium-${CHROMIUM_VERSION}"
+DIR="chromiums/chromium-${CHROMIUM_VERSION}"
 
 if [ -d "$DIR" ]; then 
   cd $DIR
