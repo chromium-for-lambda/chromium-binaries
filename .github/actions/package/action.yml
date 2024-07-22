@@ -59,6 +59,7 @@ runs:
         cp out/Default/chrome_200_percent.pak "${HOME}/build/chrome"
         cp -r out/Default/locales "${HOME}/build/chrome"
         cp -r out/Default/resources "${HOME}/build/chrome"
+        cp -r out/Default/PrivacySandboxAttestationsPreloaded "${HOME}/build/chrome"
         cp out/Default/resources.pak "${HOME}/build/chrome"
         cp out/Default/product_logo_48.png "${HOME}/build/chrome"
         cp out/Default/vk_swiftshader_icd.json "${HOME}/build/chrome"
