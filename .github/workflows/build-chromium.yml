@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
         if: ${{ matrix.al_version == 'al2023' }}
       - name: Checkout this repo for Amazon Linux 2
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: ${{ matrix.al_version == 'al2' }}
       - name: Update env for Amazon Linux 2
         shell: bash
