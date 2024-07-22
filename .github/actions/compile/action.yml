@@ -41,7 +41,7 @@ runs:
     - name: Disable PartitionAlloc
       shell: bash
       run: |
-        echo "use_partition_alloc = false" >> out/Default/args.gn
+        echo "enable_pkeys = false" >> out/Default/args.gn
       working-directory: /home/runner/src
       if: ${{ inputs.al_version == 'al2' }}
     - name: Set up the build
