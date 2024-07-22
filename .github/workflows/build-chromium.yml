@@ -54,6 +54,9 @@ jobs:
           architecture: ${{ matrix.architecture }}
       - uses: ./.github/actions/install-nodejs
         if: ${{ matrix.architecture == 'arm64' || matrix.al_version == 'al2' }}
+        with:
+          al_version: ${{ matrix.al_version }}
+          architecture: ${{ matrix.architecture }}
       - uses: ./.github/actions/compile
         with:
           al_version: ${{ matrix.al_version }}
