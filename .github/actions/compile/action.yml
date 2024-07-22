@@ -22,7 +22,17 @@ runs:
       shell: bash
       working-directory: /home/runner/src  
       if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/fix-undefined-seals.patch"
+    - run: |
+        sudo echo '#ifndef F_LINUX_SPECIFIC_BASE' >> /usr/include/fcntl.h
+        sudo echo '#define F_LINUX_SPECIFIC_BASE 1024' >> /usr/include/fcntl.h
+        sudo echo '#endif' >> /usr/include/fcntl.h
+        sudo echo '#define F_ADD_SEALS (F_LINUX_SPECIFIC_BASE + 9)' >> /usr/include/fcntl.h
+        sudo echo '#define F_GET_SEALS (F_LINUX_SPECIFIC_BASE + 10)' >> /usr/include/fcntl.h
+        sudo echo '#define F_SEAL_SEAL 0x0001' >> /usr/include/fcntl.h
+        sudo echo '#define F_SEAL_SHRINK 0x0002' >> /usr/include/fcntl.h
+        sudo echo '#define F_SEAL_GROW 0x0004' >> /usr/include/fcntl.h
+        sudo echo '#define F_SEAL_GROW 0x0004' >> /usr/include/fcntl.h
+        sudo echo '#define F_SEAL_FUTURE_WRITE 0x0010' >> /usr/include/fcntl.h
       shell: bash
       working-directory: /home/runner/src  
       if: ${{ inputs.al_version == 'al2' }}
