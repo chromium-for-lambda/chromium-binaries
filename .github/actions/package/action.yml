@@ -22,6 +22,7 @@ runs:
         cp /usr/lib64/libsmime3.so "${HOME}/build/system"
         cp /usr/lib64/libsoftokn3.so "${HOME}/build/system"
         cp /usr/lib64/libsystemd.so.0 "${HOME}/build/system"
+      shell: bash
     - run: |
         cp /usr/lib64/libdw.so.1 "${HOME}/build/system"
         cp /usr/lib64/libelf.so.1 "${HOME}/build/system"
@@ -30,7 +31,6 @@ runs:
         cp /usr/lib64/liblz4.so.1 "${HOME}/build/system"
         cp /usr/lib64/libsqlite3.so.0 "${HOME}/build/system"
       shell: bash
-      working-directory: /home/runner/src
       if: ${{ inputs.al_version == 'al2' }}
     - run: |
         cp /usr/lib64/libnssutil3.so "${HOME}/build/system"
@@ -41,7 +41,6 @@ runs:
         cp /usr/lib64/libplc4.so "${HOME}/build/system"
         cp /usr/lib64/libplds4.so "${HOME}/build/system"
       shell: bash
-      working-directory: /home/runner/src
       if: ${{ inputs.al_version == 'al2023' }}
     - run: |
         mkdir -p "${HOME}/build/chrome"
