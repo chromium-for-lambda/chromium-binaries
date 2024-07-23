@@ -45,7 +45,6 @@ runs:
     - run: |
         mkdir -p "${HOME}/build/chrome"
         strip -o "${HOME}/build/chrome/chrome" out/Default/chrome
-        strip -o "${HOME}/build/chrome/chrome_sandbox" out/Default/chrome_sandbox
         strip -o "${HOME}/build/chrome/chrome_crashpad_handler" out/Default/chrome_crashpad_handler
         strip -o "${HOME}/build/chrome/libEGL.so" out/Default/libEGL.so
         strip -o "${HOME}/build/chrome/libGLESv2.so" out/Default/libGLESv2.so
