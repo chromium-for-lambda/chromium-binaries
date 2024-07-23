@@ -17,7 +17,7 @@ patches=( dependencies clang rust source )
 
 for patch in "${patches[@]}"; do
   echo "Applying ${patch} patches..."
-  for FILE in ./../assets/patches/${patch}/*.patch; do
+  for FILE in ./../../assets/patches/${patch}/*.patch; do
     echo "  Applying ${FILE}..."
     git apply $FILE --check
   done
