@@ -74,22 +74,14 @@ runs:
       shell: bash
       working-directory: /home/runner
     - run: |
-        mkdir -p "${HOME}/build/chromedriver"
-        strip -o "${HOME}/build/chromedriver/chromedriver" out/Default/chromedriver
-        cp out/Default/LICENSE.chromedriver "${HOME}/build/chromedriver"
-      shell: bash
-      working-directory: /home/runner
-    - run: |
         zip -r "system-${VERSION}-${RUNNER_LABEL/,/-}.zip" system
         zip -r "chrome-${VERSION}-${RUNNER_LABEL/,/-}.zip" chrome
         zip -r "headless_shell-${VERSION}-${RUNNER_LABEL/,/-}.zip" headless_shell
-        zip -r "chromedriver-${VERSION}-${RUNNER_LABEL/,/-}.zip" chromedriver
       shell: bash
       working-directory: /home/runner/build
     - run: |
         aws s3 cp "system-${VERSION}-${RUNNER_LABEL/,/-}.zip" "s3://${BINARIES_BUCKET}"
         aws s3 cp "chrome-${VERSION}-${RUNNER_LABEL/,/-}.zip" "s3://${BINARIES_BUCKET}"
         aws s3 cp "headless_shell-${VERSION}-${RUNNER_LABEL/,/-}.zip" "s3://${BINARIES_BUCKET}"
-        aws s3 cp "chromedriver-${VERSION}-${RUNNER_LABEL/,/-}.zip" "s3://${BINARIES_BUCKET}"
       shell: bash
       working-directory: /home/runner/build

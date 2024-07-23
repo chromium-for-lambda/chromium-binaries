@@ -49,6 +49,6 @@ runs:
       shell: bash
       working-directory: /home/runner/src
     - name: Build headless_shell
-      run: autoninja -C out/Default headless_shell chrome chromedriver
+      run: autoninja -C out/Default headless_shell chrome
       shell: bash
       working-directory: /home/runner/src
