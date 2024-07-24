@@ -22,10 +22,6 @@ runs:
       shell: bash
       working-directory: /home/runner/src  
       if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/fix-undefined-seals.patch"
-      shell: bash
-      working-directory: /home/runner/src  
-      if: ${{ inputs.al_version == 'al2' }}
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/v8/disable-pku-jit-write-protect.patch"
       shell: bash
       working-directory: /home/runner/src/v8
