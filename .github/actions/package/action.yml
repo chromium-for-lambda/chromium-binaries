@@ -51,7 +51,6 @@ runs:
         strip -o "${HOME}/build/chrome/libvulkan.so.1" out/Default/libvulkan.so.1
         strip -o "${HOME}/build/chrome/libvk_swiftshader.so" out/Default/libvk_swiftshader.so
         cp out/Default/chrome-wrapper "${HOME}/build/chrome"
-        cp out/Default/icudtl.dat "${HOME}/build/chrome"
         cp -r out/Default/MEIPreload "${HOME}/build/chrome"
         cp out/Default/chrome_100_percent.pak "${HOME}/build/chrome"
         cp out/Default/chrome_200_percent.pak "${HOME}/build/chrome"
