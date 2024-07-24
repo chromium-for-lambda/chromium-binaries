@@ -86,6 +86,7 @@ const fixAL2Seals = RunnerImageComponent.custom({
     `echo '#define F_SEAL_SEAL 0x0001' >> /usr/include/fcntl.h`,
     `echo '#define F_SEAL_SHRINK 0x0002' >> /usr/include/fcntl.h`,
     `echo '#define F_SEAL_GROW 0x0004' >> /usr/include/fcntl.h`,
+    `echo '#define F_SEAL_WRITE 0x0008' >> /usr/include/fcntl.h`,
     `echo '#define F_SEAL_FUTURE_WRITE 0x0010' >> /usr/include/fcntl.h`
   ]
 });
