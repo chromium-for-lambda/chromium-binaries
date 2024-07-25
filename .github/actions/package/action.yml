@@ -69,7 +69,7 @@ runs:
         cp out/Default/headless_lib_data.pak "${HOME}/build/headless_shell"
         cp out/Default/headless_lib_strings.pak "${HOME}/build/headless_shell"
       shell: bash
-      working-directory: /home/runner
+      working-directory: /home/runner/src
     - run: |
         zip -r "system-${VERSION}-${RUNNER_LABEL/,/-}.zip" system
         zip -r "chrome-${VERSION}-${RUNNER_LABEL/,/-}.zip" chrome
