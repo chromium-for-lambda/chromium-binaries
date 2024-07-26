@@ -1,18 +1,14 @@
-diff --git a/base/allocator/partition_allocator/src/partition_alloc/partition_alloc_config.h b/base/allocator/partition_allocator/src/partition_alloc/partition_alloc_config.h
-index 6a4c4714a0..2b1d1d9731 100644
---- a/base/allocator/partition_allocator/src/partition_alloc/partition_alloc_config.h
-+++ b/base/allocator/partition_allocator/src/partition_alloc/partition_alloc_config.h
-@@ -160,13 +160,7 @@ static_assert(sizeof(void*) != 8, "");
- #define PA_CONFIG_HAS_FREELIST_SHADOW_ENTRY() 0
- #endif
+diff --git a/base/allocator/partition_allocator/partition_alloc.gni b/base/allocator/partition_allocator/partition_alloc.gni
+index c76d412768..de4c16e75e 100644
+--- a/base/allocator/partition_allocator/partition_alloc.gni
++++ b/base/allocator/partition_allocator/partition_alloc.gni
+@@ -29,8 +29,7 @@ if (is_nacl) {
+   assert(false, "Unknown CPU: $current_cpu")
+ }
  
--#if defined(ARCH_CPU_ARM64) && defined(__clang__) && \
--    !defined(ADDRESS_SANITIZER) &&                   \
--    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID))
--#define PA_CONFIG_HAS_MEMORY_TAGGING() 1
--#else
- #define PA_CONFIG_HAS_MEMORY_TAGGING() 0
--#endif
+-has_memory_tagging =
+-    current_cpu == "arm64" && is_clang && !is_asan && (is_linux || is_android)
++has_memory_tagging = false
  
- #if PA_CONFIG(HAS_MEMORY_TAGGING)
- static_assert(sizeof(void*) == 8);
+ declare_args() {
+   # Causes all the allocations to be routed via allocator_shim.cc. Usually,
