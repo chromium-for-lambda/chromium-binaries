@@ -1,5 +1,5 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 880407b491..9471fc8cd1 100755
+index 15e91526c4..ec281c3152 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
 @@ -808,7 +808,7 @@ def main():
@@ -11,15 +11,15 @@ index 880407b491..9471fc8cd1 100755
    projects = 'clang;lld;clang-tools-extra'
    if args.bolt:
      projects += ';bolt'
-@@ -891,19 +891,6 @@ def main():
+@@ -897,19 +897,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
 -  if sys.platform.startswith('linux'):
--    sysroot_amd64 = DownloadDebianSysroot('amd64')
--    sysroot_i386 = DownloadDebianSysroot('i386')
--    sysroot_arm = DownloadDebianSysroot('arm')
--    sysroot_arm64 = DownloadDebianSysroot('arm64')
+-    sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
+-    sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
+-    sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
+-    sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
 -
 -    # Add the sysroot to base_cmake_args.
 -    if platform.machine() == 'aarch64':
@@ -31,7 +31,7 @@ index 880407b491..9471fc8cd1 100755
    if sys.platform == 'win32':
      AddGnuWinToPath()
  
-@@ -1175,53 +1162,12 @@ def main():
+@@ -1181,53 +1168,12 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
