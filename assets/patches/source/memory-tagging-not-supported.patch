@@ -1,10 +1,10 @@
 diff --git a/base/allocator/partition_allocator/partition_alloc.gni b/base/allocator/partition_allocator/partition_alloc.gni
-index c76d412768..de4c16e75e 100644
+index d7be302093..a9ce38e502 100644
 --- a/base/allocator/partition_allocator/partition_alloc.gni
 +++ b/base/allocator/partition_allocator/partition_alloc.gni
-@@ -29,8 +29,7 @@ if (is_nacl) {
-   assert(false, "Unknown CPU: $current_cpu")
- }
+@@ -32,8 +32,7 @@ if (is_nacl) {
+ # Increases the size of the empty slot span ring.
+ use_large_empty_slot_span_ring = is_mac
  
 -has_memory_tagging =
 -    current_cpu == "arm64" && is_clang && !is_asan && (is_linux || is_android)
