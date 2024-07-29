@@ -1,9 +1,9 @@
 diff --git a/src/base/build_config.h b/src/base/build_config.h
-index 6733302..db75768 100644
+index 5708ce20c8a..3586ffb8ee1 100644
 --- a/src/base/build_config.h
 +++ b/src/base/build_config.h
-@@ -35,11 +35,7 @@
- #define V8_HAS_PTHREAD_JIT_WRITE_PROTECT 0
+@@ -43,11 +43,7 @@
+ #define V8_HAS_BECORE_JIT_WRITE_PROTECT 0
  #endif
  
 -#if defined(V8_OS_LINUX) && defined(V8_HOST_ARCH_X64)
