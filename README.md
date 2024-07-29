@@ -105,11 +105,9 @@ export const handler = async () => {
 We thoroughly test our binaries before publishing. But feel free to [create an issue](https://github.com/chromium-for-lambda/binaries/issues) if you experience unexpected behaviour.
 
 ## FAQ
-## Got an example codebase that is actually using this?
-Yes. Please take a look at [this](https://github.com/chromium-for-lambda/playwright-screenshot/blob/main/src/index.ts).
 
-### Am I supposed to just trust your binaries? Where is the script to compile for myself?
-With [our pro plan](https://pro.chromiumforlambda.org) you get read access to an extra GitHub repository where we keep and update the scripts to compile Chromium from scratch.
+### Am I supposed to just trust your binaries?
+Our binaries are compiled [in a Github action](https://github.com/chromium-for-lambda/chromium-binaries/actions). This means you can follow exactly how our Chromium binaries are built, from source to deployment. This means you can verify the integrity and quality of our binaries, and have a better understanding of the process that goes into creating them.
 
 ### What is the difference between automatic and manual installation?
 Automatic installation uses environment variables to configure Playwright/Puppeteer to download Lambda-compatible binaries. Manual installation requires downloading the zip file containing required dependencies and uploading to Lambda manually.
@@ -127,3 +125,6 @@ If you are using Amazon Linux 2 (AL2), you should download the Chromium binaries
 If you're using Node.js, please note that:
 - The Node.js 16 and 18 Lambda runtimes are using Amazon Linux 2 (AL2)
 - The Node.js 20 runtime is using Amazon Linux 2023 (AL2023)
+
+## Got an example codebase that is actually using this?
+Yes. Please take a look at [this](https://github.com/chromium-for-lambda/playwright-screenshot/blob/main/src/index.ts).
