@@ -75,6 +75,22 @@ const installAL2023X86CompilerSymlinks = RunnerImageComponent.custom({
   ]
 })
 
+const fixAL2Seals = RunnerImageComponent.custom({
+  name: "FixAL2Seals",
+  commands: [
+    `echo '#ifndef F_LINUX_SPECIFIC_BASE' >> /usr/include/fcntl.h`,
+    `echo '#define F_LINUX_SPECIFIC_BASE 1024' >> /usr/include/fcntl.h`,
+    `echo '#endif' >> /usr/include/fcntl.h`,
+    `echo '#define F_ADD_SEALS (F_LINUX_SPECIFIC_BASE + 9)' >> /usr/include/fcntl.h`,
+    `echo '#define F_GET_SEALS (F_LINUX_SPECIFIC_BASE + 10)' >> /usr/include/fcntl.h`,
+    `echo '#define F_SEAL_SEAL 0x0001' >> /usr/include/fcntl.h`,
+    `echo '#define F_SEAL_SHRINK 0x0002' >> /usr/include/fcntl.h`,
+    `echo '#define F_SEAL_GROW 0x0004' >> /usr/include/fcntl.h`,
+    `echo '#define F_SEAL_WRITE 0x0008' >> /usr/include/fcntl.h`,
+    `echo '#define F_SEAL_FUTURE_WRITE 0x0010' >> /usr/include/fcntl.h`
+  ]
+});
+
 export class ChromiumBuilderStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -129,6 +145,8 @@ export class ChromiumBuilderStack extends cdk.Stack {
     imageBuilderAL2023ARM64.addComponent(installAL2023Arm64CompilerSymlinks)
     imageBuilderAL2X86.addComponent(installAL2X86CompilerSymlinks)
     imageBuilderAL2023X86.addComponent(installAL2023X86CompilerSymlinks)
+    imageBuilderAL2X86.addComponent(fixAL2Seals)
+    imageBuilderAL2ARM64.addComponent(fixAL2Seals)
 
     const x86Cluster = new Cluster(this, 'X86Cluster', {
       vpc,
