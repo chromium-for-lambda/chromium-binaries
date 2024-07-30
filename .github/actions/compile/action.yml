@@ -10,10 +10,10 @@ inputs:
 runs:
   using: composite
   steps:
-    # - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/ifunc-header-patch.patch"
-    #   shell: bash
-    #   working-directory: /home/runner/src  
-    #   if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/ifunc-header-patch.patch"
+      shell: bash
+      working-directory: /home/runner/src  
+      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
     - run: sudo patch -p1 <"${GITHUB_WORKSPACE}/assets/patches/system/update-v4l2-linux-headers.patch1"
       shell: bash
       working-directory: /usr

@@ -1,0 +1,16 @@
+diff --git a/base/allocator/partition_allocator/src/partition_alloc/aarch64_support.h b/base/allocator/partition_allocator/src/partition_alloc/aarch64_support.h
+index 4d01be71a7..8e401cfb0e 100644
+--- a/base/allocator/partition_allocator/src/partition_alloc/aarch64_support.h
++++ b/base/allocator/partition_allocator/src/partition_alloc/aarch64_support.h
+@@ -10,9 +10,11 @@
+ #include "partition_alloc/build_config.h"
+ #include "partition_alloc/partition_alloc_buildflags.h"
+ 
++#if 0
+ #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX)
+ #define HAS_HW_CAPS
+ #endif
++#endif
+ 
+ #if defined(ARCH_CPU_ARM64) && defined(HAS_HW_CAPS)
+ #include <asm/hwcap.h>
