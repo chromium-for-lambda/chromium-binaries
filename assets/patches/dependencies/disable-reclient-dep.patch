@@ -1,8 +1,8 @@
 diff --git a/DEPS b/DEPS
-index 7d6eee5e1a..5338b9031b 100644
+index faa0c930d8..89dc4b9d20 100644
 --- a/DEPS
 +++ b/DEPS
-@@ -584,15 +584,6 @@ deps = {
+@@ -747,16 +747,6 @@ deps = {
      'dep_type': 'cipd',
      'condition': 'host_os == "win"',
    },
@@ -13,6 +13,7 @@ index 7d6eee5e1a..5338b9031b 100644
 -        'version': Var('reclient_version'),
 -      }
 -    ],
+-    'condition': 'non_git_source',
 -    'dep_type': 'cipd',
 -  },
  
