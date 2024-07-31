@@ -1,10 +1,10 @@
 diff --git a/DEPS b/DEPS
-index faa0c930d8..451d257900 100644
+index e9abf60b1a..6a02d7fb28 100644
 --- a/DEPS
 +++ b/DEPS
-@@ -566,84 +566,6 @@ deps = {
-           },
-       ],
+@@ -570,84 +570,6 @@ deps = {
+     ]
+ 
    },
 -  'src/build/linux/debian_bullseye_amd64-sysroot': {
 -    'bucket': 'chrome-linux-sysroot',
@@ -84,6 +84,6 @@ index faa0c930d8..451d257900 100644
 -      },
 -    ],
 -  },
-   'src/buildtools/win/format': {
+   'src/buildtools/win-format': {
      'bucket': 'chromium-clang-format',
      'condition': 'host_os == "win" and non_git_source',
