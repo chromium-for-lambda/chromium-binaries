@@ -1,0 +1,33 @@
+diff --git a/chrome-headless-shell b/chrome-headless-shell
+index 718b9ef..e759883 100644
+--- a/chrome-headless-shell
++++ b/chrome-headless-shell
+@@ -73,6 +73,11 @@ export CHROME_DESKTOP="$DESKTOP.desktop"
+ 
+ HERE="`dirname "$CHROME_WRAPPER"`"
+ 
++# Fix fonts
++ln -snf "$HERE/../fonts" "/tmp/fonts"
++export FONTCONFIG_PATH="$HERE/../fonts"
++export HOME="/tmp"
++
+ # We include some xdg utilities next to the binary, and we want to prefer them
+ # over the system versions when we know the system versions are very old. We
+ # detect whether the system xdg utilities are sufficiently new to be likely to
+@@ -92,8 +97,8 @@ fi
+ # Always use our ffmpeg and other shared libs.
+ export LD_LIBRARY_PATH="$HERE:$HERE/lib:$HERE/lib.target${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+ 
+-MISSING_LIBS=$(ldd "$HERE/chrome" 2> /dev/null |grep "not found$" | cut -d" " -f 1|sed 's/\t//')
+-CHROME_ARCH=$(check_executable "$HERE/chrome")
++MISSING_LIBS=$(ldd "$HERE/headless_shell" 2> /dev/null |grep "not found$" | cut -d" " -f 1|sed 's/\t//')
++CHROME_ARCH=$(check_executable "$HERE/headless_shell")
+ uname -m | grep -qs x86_64
+ if [ $? = 1 ]; then
+     LIBDIRS="/lib /lib32 /usr/lib /usr/lib32"
+@@ -160,4 +165,4 @@ while [ "$#" -gt 0 ]; do
+ done
+ set -- "${ARGS[@]}" "$@"
+ 
+-exec $CMD_PREFIX "$HERE/chrome" "$@"
++exec $CMD_PREFIX "$HERE/headless_shell" "$@"
