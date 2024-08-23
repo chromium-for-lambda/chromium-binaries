@@ -95,6 +95,8 @@ export class ChromiumBuilderStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const binariesBucket = new Bucket(this, "Binaries", { versioned: true })
+
     const vpc = new Vpc(this, "VPC", {
       ipProtocol: IpProtocol.DUAL_STACK,
       maxAzs: 1
@@ -155,8 +157,6 @@ export class ChromiumBuilderStack extends cdk.Stack {
     const arm64Ccluster = new Cluster(this, 'ARM64Ccluster', {
       vpc,
     });
-
-    const binariesBucket = new Bucket(this, "Binaries", { versioned: true })
 
     const runners = new GitHubRunners(this, 'Runners', {
       setupAccess: LambdaAccess.noAccess(),
