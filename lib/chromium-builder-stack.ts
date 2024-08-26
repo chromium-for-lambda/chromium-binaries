@@ -10,6 +10,7 @@ const installCmakeCommand = RunnerImageComponent.custom({
   name: "InstallCMake",
   commands: [
     'yum install -y gcc10 gcc10-c++ zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl11 openssl11-devel xz xz-devel libffi-devel',
+    'yum remove -y gcc',
     'export CC="/bin/gcc10-cc"',
     'export CXX="/bin/gcc10-c++"',
     'yum install -y wget tar',
