@@ -8,7 +8,7 @@ We offer both `ARM_64` and `X86_64` binaries, as well as support for both Amazon
 
 ## Installation
 
-No need to add additional NPM packages to your project! 
+Using Puppeteer or Playwright? No need to add additional NPM packages to your project! 
 
 Simply set the appropriate environment variables in Lambda and Playwright/Puppeteer will automatically download our Lambda-compatible binaries. Alternatively, you can download and install our binaries manually.
 
