@@ -25,11 +25,15 @@ runs:
       shell: bash
       working-directory: /home/runner/src
       if: ${{ inputs.al_version == 'al2' }}
-    - run: ./tools/clang/scripts/build.py --bootstrap --without-android --without-fuchsia --use-system-cmake --host-cc /bin/clang --host-cxx /bin/clang++ --with-ml-inliner-model=''
+    - run: ./tools/clang/scripts/build.py --bootstrap --without-android --without-fuchsia --use-system-cmake --host-cc /bin/gcc10-cc --host-cxx /bin/gcc10-cc++ --with-ml-inliner-model=''
       shell: bash
       working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'arm64' }}
-    - run: ./tools/clang/scripts/build.py --bootstrap --without-android --without-fuchsia --with-ml-inliner-model=''
+      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
+    - run: ./tools/clang/scripts/build.py --without-android --without-fuchsia --use-system-cmake --host-cc /bin/clang --host-cxx /bin/clang++ --with-ml-inliner-model=''
+      shell: bash
+      working-directory: /home/runner/src
+      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2023' }}
+    - run: ./tools/clang/scripts/build.py --without-android --without-fuchsia --with-ml-inliner-model=''
       shell: bash
       working-directory: /home/runner/src
       if: ${{ inputs.architecture == 'x86' }}
