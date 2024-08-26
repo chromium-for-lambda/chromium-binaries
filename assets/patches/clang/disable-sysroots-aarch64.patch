@@ -1,8 +1,8 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 3bd95b0b11..23f78b8465 100755
+index 71f75fded5..d51e124ff6 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -801,7 +801,7 @@ def main():
+@@ -800,7 +800,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -11,7 +11,7 @@ index 3bd95b0b11..23f78b8465 100755
    projects = 'clang;lld;clang-tools-extra'
    if args.bolt:
      projects += ';bolt'
-@@ -878,19 +878,6 @@ def main():
+@@ -877,19 +877,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
@@ -31,7 +31,19 @@ index 3bd95b0b11..23f78b8465 100755
    if sys.platform == 'win32':
      AddGnuWinToPath()
  
-@@ -1190,52 +1177,15 @@ def main():
+@@ -965,10 +952,7 @@ def main():
+       # COMPILER_RT_BUILD_BUILTINS).
+       runtimes.append('compiler-rt')
+ 
+-    bootstrap_targets = 'X86'
+-    if sys.platform == 'darwin':
+-      # Need ARM and AArch64 for building the ios clang_rt.
+-      bootstrap_targets += ';ARM;AArch64'
++    bootstrap_targets = 'AArch64'
+     bootstrap_args = base_cmake_args + ccache_cmake_args + [
+         '-DLLVM_TARGETS_TO_BUILD=' + bootstrap_targets,
+         '-DLLVM_ENABLE_PROJECTS=clang;lld',
+@@ -1193,52 +1177,15 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
