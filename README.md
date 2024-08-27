@@ -18,7 +18,7 @@ For automatic installation, set environment variables and Playwright/Puppeteer w
 
 ## Versions
 
-We aim to release compatible Chromium versions as soon as possible after official releases. However, compiling, testing, debugging builds is labour intensive work. We therefore require a pro subscription or a one-time payment for the latest 5 versions.
+We strive to make compatible Chromium versions available as soon as they're officially released. However, the process of compiling, debugging, and testing these builds is a resource-intensive task that requires significant computational power and human effort. To ensure we can continue to provide this service, we require a pro subscription or a one-time payment for access to the latest 5 versions.
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
