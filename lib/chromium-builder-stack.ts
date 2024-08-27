@@ -9,7 +9,7 @@ import { Bucket } from 'aws-cdk-lib/aws-s3';
 const installCmakeCommand = RunnerImageComponent.custom({
   name: "InstallCMake",
   commands: [
-    'yum install -y gcc10 gcc10-c++ zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl11 openssl11-devel xz xz-devel libffi-devel',
+    'yum install -y gcc10 gcc10-c++ gcc10-binutils gcc10-binutils-devel zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl11 openssl11-devel xz xz-devel libffi-devel',
     'export CC="/bin/gcc10-cc"',
     'export CXX="/bin/gcc10-c++"',
     'yum install -y wget tar',
@@ -28,7 +28,8 @@ const installCmakeCommand = RunnerImageComponent.custom({
 const installAL2BuildDependencies = RunnerImageComponent.custom({
   name: "InstallAL2BuildDependencies",
   commands: [
-    'yum install -y "@Development Tools" nano git alsa-lib-devel atk-devel bc bluez-libs-devel bzip2-devel cairo-devel cups-devel dbus-devel dbus-glib-devel dbus-x11 expat-devel glibc-langpack-en gperf gtk3-devel httpd libatomic libcap-devel libjpeg-devel libXScrnSaver-devel libxkbcommon-x11-devel mod_ssl ncurses-devel ncurses-compat-libs nspr-devel nss-devel pam-devel pciutils-devel perl php php-cli pulseaudio-libs-devel ruby xorg-x11-server-Xvfb libcurl-devel libxml2-devel clang libdrm-devel libuuid-devel mesa-* --skip-broken'
+    'yum install -y "@Development Tools" nano git alsa-lib-devel atk-devel bc bluez-libs-devel bzip2-devel cairo-devel cups-devel dbus-devel dbus-glib-devel dbus-x11 expat-devel glibc-langpack-en gperf gtk3-devel httpd libatomic libcap-devel libjpeg-devel libXScrnSaver-devel libxkbcommon-x11-devel mod_ssl ncurses-devel ncurses-compat-libs nspr-devel nss-devel pam-devel pciutils-devel perl php php-cli pulseaudio-libs-devel ruby xorg-x11-server-Xvfb libcurl-devel libxml2-devel clang libdrm-devel libuuid-devel mesa-* --skip-broken',
+    'yum remove -y gcc'
   ]
 })
 
