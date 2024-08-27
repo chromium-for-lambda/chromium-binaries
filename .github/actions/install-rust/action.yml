@@ -16,10 +16,14 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/bindgen-without-sysroot.patch"
       shell: bash
       working-directory: /home/runner/src
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-arm64.patch"
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-arm64-al2.patch"
       shell: bash
       working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'arm64' }}
+      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-arm64-al2023.patch"
+      shell: bash
+      working-directory: /home/runner/src
+      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2023' }}
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-x86.patch"
       shell: bash
       working-directory: /home/runner/src
