@@ -16,9 +16,9 @@ Simply set the appropriate environment variables in Lambda and Playwright/Puppet
 
 For automatic installation, set environment variables and Playwright/Puppeteer will automatically download compatible binaries ([details](#examples-automatic-installation)). For manual installation, download the zip file containing Chromium and it's required dependencies and upload to Lambda yourself.
 
-## Versions
+## Releases
 
-We strive to make compatible Chromium versions available as soon as they're officially released. However, the process of compiling, debugging, and testing these builds is a resource-intensive task that requires significant computational power and human effort. To ensure we can continue to provide this service, we require a pro subscription or a one-time payment for access to the latest 5 versions.
+We strive to make compatible Chromium versions available as soon as they're officially released. However, compiling, debugging, and testing these builds is resource-intensive and requires significant computational power and human effort. To ensure we can continue to provide this service, we require a pro subscription or a one-time payment for access to the latest 5 versions.
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
