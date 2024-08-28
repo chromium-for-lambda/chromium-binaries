@@ -177,7 +177,7 @@ A Lambda layer is a .zip file archive that contains supplementary code or data. 
 
 You can download the headless_shell-*.zip that matches your Playwright / Puppeteer version and upload it as a layer.
 
-#### Layer installation with Playwright
+#### Layer usage with Playwright
 
 ```javascript
 // Make sure that:
@@ -199,7 +199,7 @@ export const handler = async () => {
 
 ```
 
-#### Layer installation with Puppeteer >= 22
+#### Layer usage with Puppeteer >= 22
 
 ```javascript
 // Make sure that:
@@ -221,7 +221,7 @@ export const handler = async () => {
 }
 ```
 
-#### Layer installation with Puppeteer < 22
+#### Layer usage with Puppeteer < 22
 
 ```javascript
 // Make sure that:
