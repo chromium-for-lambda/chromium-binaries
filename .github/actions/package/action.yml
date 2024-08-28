@@ -66,6 +66,11 @@ runs:
     - run: |
         mkdir -p "${HOME}/build/headless_shell"
         strip -o "${HOME}/build/headless_shell/headless_shell" out/Default/headless_shell
+        strip -o "${HOME}/build/headless_shell/libEGL.so" out/Default/libEGL.so
+        strip -o "${HOME}/build/headless_shell/libGLESv2.so" out/Default/libGLESv2.so
+        strip -o "${HOME}/build/headless_shell/libvulkan.so.1" out/Default/libvulkan.so.1
+        strip -o "${HOME}/build/headless_shell/libvk_swiftshader.so" out/Default/libvk_swiftshader.so
+        cp out/Default/vk_swiftshader_icd.json "${HOME}/build/headless_shell"
         cp out/Default/headless_lib_data.pak "${HOME}/build/headless_shell"
         cp out/Default/headless_lib_strings.pak "${HOME}/build/headless_shell"
       shell: bash

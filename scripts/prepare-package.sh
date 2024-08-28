@@ -98,5 +98,7 @@ for version in "${versions[@]}"; do
   rm chrome-linux
   rm -rf fonts
 
+  aws s3 sync --exclude="*" --include="*.zip" . s3://chromium-for-lambda-binaries  --profile browsrs
+
   cd ..
 done

@@ -16,13 +16,13 @@ Simply set the appropriate environment variables in Lambda and Playwright/Puppet
 
 For automatic installation, set environment variables and Playwright/Puppeteer will automatically download compatible binaries ([details](#examples-automatic-installation)). For manual installation, download the zip file containing Chromium and it's required dependencies and upload to Lambda yourself.
 
-## Versions
+## Releases
 
-We aim to release compatible Chromium versions as soon as possible after official releases. However, compiling, and testing isn't free. We therefore only offer the binaries from at least 5 major versions ago for free.
+We strive to make compatible Chromium versions available as soon as they're officially released. However, compiling, debugging, and testing these builds is resource-intensive and requires significant computational power and human effort. To ensure we can continue to provide this service, we require a pro subscription or a one-time payment for access to the latest 5 versions.
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
-| `128.0.6613` | `v1.46.0`, `v1.46.1` |  | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
+| `128.0.6613` | `v1.46.0`, `v1.46.1` | `v23.2.0` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `127.0.6533` | `v1.45.0`, `v1.45.1`, `v1.45.2`, `v1.45.3` | `v22.14.0`, `v22.15.0`, `v23.0.0`, `v23.0.1`, `v23.0.2`, `v23.1.0`, `v23.1.1` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `126.0.6478` |  | `v22.11.0`, `v22.11.1`, `v22.11.2`, `v22.12.0`, `v22.12.1`, `v22.13.0`, `v22.13.1` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `125.0.6422` | `v1.44.0`, `v1.44.1` | `v22.10.0`, `v22.10.1`, `v22.9.0` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
