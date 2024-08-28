@@ -255,8 +255,8 @@ We thoroughly test our binaries before publishing. But feel free to [create an i
 ### Am I supposed to just trust your binaries?
 Our binaries are compiled [in a Github action](https://github.com/chromium-for-lambda/chromium-binaries/actions). This means you can follow exactly how our Chromium binaries are built, from source to deployment. This means you can verify the integrity and quality of our binaries, and have a better understanding of the process that goes into creating them.
 
-### What is the difference between automatic and manual installation?
-Automatic installation uses environment variables to configure Playwright/Puppeteer to download Lambda-compatible binaries. Manual installation requires downloading the zip file containing required dependencies and uploading to Lambda manually.
+### What is the difference between automatic and manual installation via a layer?
+Automatic installation uses environment variables to configure Playwright/Puppeteer to download Lambda-compatible binaries from our CDN. Manual installation requires downloading the correct zip file containing required dependencies and uploading to Lambda manually via a Lambda layer.
 
 ### Why are there different Chromium binaries for Amazon Linux 2 (AL2) and Amazon Linux 2023 (AL2023)?
 The Chromium binaries for Amazon Linux 2 (AL2) and Amazon Linux 2023 (AL2023) are different because they are compiled with different versions of the Linux kernel and dependencies. 
