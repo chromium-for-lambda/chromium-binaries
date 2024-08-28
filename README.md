@@ -14,7 +14,8 @@ Simply set the appropriate environment variables in Lambda and Playwright/Puppet
 
 ## Usage
 
-For automatic installation, set environment variables and Playwright/Puppeteer will automatically download compatible binaries ([details](#examples-automatic-installation)). For manual installation, download the zip file containing Chromium and it's required dependencies and upload to Lambda yourself.
+- For automatic installation, set environment variables and Playwright/Puppeteer will automatically download compatible binaries ([details](#download-a-supported-browser-binary-from-your-function-code)). 
+- For installation via a Lambda layer, download the correct zip file containing Chromium and it's required dependencies and upload to Lambda yourself ([details](#installation-via-a-lambda-layer)).
 
 ## Releases
 
