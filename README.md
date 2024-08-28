@@ -35,9 +35,9 @@ We strive to make compatible Chromium versions available as soon as they're offi
 <sup>*Accessing the 5 newest major Chromium release binaries requires a [pro subscription or a one-time payment](https://pro.chromiumforlambda.org).</sup>
 
 ## Examples 
-### Download a supported browser binary automatically
+### Download a supported browser binary from your function code
 
-Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead.
+Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead. On Lambda, only the /tmp directory is writable, so we save the browser there.
 
 #### Automatic installation with Playwright
 Configure the following environment variables.
@@ -98,7 +98,7 @@ export const handler = async () => {
 
   const browser = await puppeteer.launch({
     args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
-    headless: 'shell'
+    headless: 'shell' | true // true launches the browser in the new headless mode, 'shell' launches shell known as the old headless mode.
   });
 
   const page = await browser.newPage();
@@ -107,7 +107,7 @@ export const handler = async () => {
 }
 ```
 
-#### Automatic installation with Puppeteer < 23
+#### Automatic installation with Puppeteer 22 ≤ x < 23
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -130,8 +130,39 @@ export const handler = async () => {
 
   const browser = await puppeteer.launch({
     args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
-    headless: 'shell'
-    // headless: true // use this instead if you're using Puppeteer < 22
+    headless: 'shell' | true // true launches the browser in the new headless mode, 'shell' launches shell known as the old headless mode.
+  });
+
+  const page = await browser.newPage();
+
+  // your Puppeteer code as usual
+}
+```
+
+#### Automatic installation with Puppeteer < 22
+Configure the following environment variables.
+```bash
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_CACHE_DIR=/tmp
+```
+
+```javascript
+// Make sure that:
+// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
+// - You've set process.env.PUPPETEER_DOWNLOAD_BASE_URL and process.env.PUPPETEER_CACHE_DIR.
+
+import puppeteer from "puppeteer";
+
+export const handler = async () => {
+  const install = require(`puppeteer/internal/node/install.js`).downloadBrowser;
+  await install()
+
+  const browser = await puppeteer.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    headless: true | 'new' // 'new' launches the browser in the new headless mode, true launches shell known as the old headless mode.
   });
 
   const page = await browser.newPage();
