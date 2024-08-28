@@ -34,9 +34,12 @@ We strive to make compatible Chromium versions available as soon as they're offi
 
 <sup>*Accessing the 5 newest major Chromium release binaries requires a [pro subscription or a one-time payment](https://pro.chromiumforlambda.org).</sup>
 
-## Examples (automatic installation)
+## Examples 
+### Download a supported browser binary automatically
 
-### Usage with Playwright
+Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead.
+
+#### Automatic installation with Playwright
 Configure the following environment variables.
 ```bash
 PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -68,7 +71,7 @@ export const handler = async () => {
 
 ```
 
-### Usage with Puppeteer >= 23
+#### Automatic installation with Puppeteer >= 23
 Configure the following environment variables.
 ```bash
 PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -104,7 +107,7 @@ export const handler = async () => {
 }
 ```
 
-### Usage with Puppeteer < 23
+#### Automatic installation with Puppeteer < 23
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -129,6 +132,78 @@ export const handler = async () => {
     args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
     headless: 'shell'
     // headless: true // use this instead if you're using Puppeteer < 22
+  });
+
+  const page = await browser.newPage();
+
+  // your Puppeteer code as usual
+}
+```
+
+### Installation via a Lambda layer
+
+A Lambda layer is a .zip file archive that contains supplementary code or data. You can use a Lambda layer to package the Chromium browser with your function. Due to size limits, Chromium can only be used with the old headless mode (via the chrome-headless-shell binary). Sadly the full Chromium binary used in the new headless mode is too large to be installed via a layer.
+
+You can download the headless_shell-*.zip that matches your Playwright / Puppeteer version and upload it as a layer.
+
+#### Layer installation with Playwright
+
+```javascript
+// Make sure that:
+// - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
+// - You've uploaded the headless_shell-*.zip file as a Lambda layer and configured your Lambda to use that layer.
+
+import { chromium } from "playwright-core";
+
+export const handler = async () => {
+  const browser = await chromium.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process'],
+    executablePath: '/opt/chrome-headless-shell-linux64/chrome-headless-shell'
+  });
+
+  const page = await browser.newPage();
+
+  // your Playwright code as usual
+}
+
+```
+
+#### Layer installation with Puppeteer >= 22
+
+```javascript
+// Make sure that:
+// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
+// - You've uploaded the headless_shell-*.zip file as a Lambda layer and configured your Lambda to use that layer.
+
+import puppeteer from "puppeteer";
+
+export const handler = async () => {
+  const browser = await puppeteer.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    headless: 'shell',
+    executablePath: '/opt/chrome-headless-shell-linux64/chrome-headless-shell'
+  });
+
+  const page = await browser.newPage();
+
+  // your Puppeteer code as usual
+}
+```
+
+#### Layer installation with Puppeteer < 22
+
+```javascript
+// Make sure that:
+// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
+// - You've uploaded the headless_shell-*.zip file as a Lambda layer and configured your Lambda to use that layer.
+
+import puppeteer from "puppeteer";
+
+export const handler = async () => {
+  const browser = await puppeteer.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    headless: true,
+    executablePath: '/opt/chrome-headless-shell-linux64/chrome-headless-shell'
   });
 
   const page = await browser.newPage();
