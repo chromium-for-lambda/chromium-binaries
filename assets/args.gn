@@ -26,7 +26,6 @@ enable_gwp_asan = false
 enable_gwp_asan_malloc = false
 enable_gwp_asan_partitionalloc = false
 enable_browser_speech_service = false
-enable_component_updater = false
 enable_reporting = false
 enable_screen_ai_browsertests = false
 enable_speech_service = false
