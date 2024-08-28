@@ -180,6 +180,8 @@ You can download the headless_shell-*.zip that matches your Playwright / Puppete
 
 #### Layer usage with Playwright
 
+Make sure the `PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW` environment variable is not set as the new headless mode is not supported via a layer.
+
 ```javascript
 // Make sure that:
 // - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
