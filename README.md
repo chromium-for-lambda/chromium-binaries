@@ -68,7 +68,43 @@ export const handler = async () => {
 
 ```
 
-### Usage with Puppeteer
+### Usage with Puppeteer >= 23
+Configure the following environment variables.
+```bash
+PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
+PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
+PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
+PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
+PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_CACHE_DIR=/tmp
+```
+
+```javascript
+// Make sure that:
+// - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
+// - You've set process.env.PUPPETEER_CHROME_DOWNLOAD_BASE_URL, process.env.PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL and process.env.PUPPETEER_CACHE_DIR.
+
+import puppeteer from "puppeteer";
+
+export const handler = async () => {
+  const install = require(`puppeteer/internal/node/install.js`).downloadBrowsers;
+  await install()
+
+  const browser = await puppeteer.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    headless: 'shell'
+  });
+
+  const page = await browser.newPage();
+
+  // your Puppeteer code as usual
+}
+```
+
+### Usage with Puppeteer < 23
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
