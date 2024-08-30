@@ -36,7 +36,7 @@ We strive to make compatible Chromium versions available as soon as they're offi
 ## Examples 
 ### Download a supported browser binary from your function code
 
-Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead. On Lambda, only the /tmp directory is writable, so we save the browser there.
+Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead. On Lambda, only the /tmp directory is writable, so we need to save the browser there.
 
 #### Automatic installation with Playwright
 Configure the following environment variables. Additionally, you can choose to configure [`PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW`](https://github.com/microsoft/playwright/blob/ec681ca78c7ce8a3a841f2583ec2a72c205cba4a/packages/playwright-core/src/server/chromium/chromium.ts#L311) which Playwright uses to activate the new headless mode.
@@ -81,6 +81,8 @@ PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambd
 PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
 PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
 PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true # (if you're using the new headless mode)
+PUPPETEER_SKIP_CHROME_DOWNLOAD=true # (if you're using the old headless mode)
 PUPPETEER_CACHE_DIR=/tmp
 ```
 
@@ -113,6 +115,8 @@ PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/a
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true # (if you're using the new headless mode)
+PUPPETEER_SKIP_CHROME_DOWNLOAD=true # (if you're using the old headless mode)
 PUPPETEER_CACHE_DIR=/tmp
 ```
 
@@ -145,6 +149,8 @@ PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/a
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true # (if you're using the new headless mode)
+PUPPETEER_SKIP_CHROME_DOWNLOAD=true # (if you're using the old headless mode)
 PUPPETEER_CACHE_DIR=/tmp
 ```
 
