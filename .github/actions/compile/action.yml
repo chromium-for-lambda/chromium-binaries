@@ -43,6 +43,10 @@ runs:
         echo "enable_pkeys = false" >> out/Default/args.gn
       working-directory: /home/runner/src
       if: ${{ inputs.al_version == 'al2' }}
+    - name: Revert 'Set is-enterprise-managed in child processes' # See: https://chromium-review.googlesource.com/c/chromium/src/+/5718759?tab=comments
+      shell: bash
+      run: git revert 9251d8d4c0debee02298fef2c0fb6cf5e362edf4
+      working-directory: /home/runner/src
     - name: Set up the build
       run: gn gen out/Default
       shell: bash
