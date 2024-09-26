@@ -29,7 +29,6 @@ enable_browser_speech_service = false
 enable_reporting = false
 enable_screen_ai_browsertests = false
 enable_speech_service = false
-enable_system_notifications = false
 enable_trace_logging = false
 disable_fieldtrial_testing_config = true
 is_chrome_for_testing = true
