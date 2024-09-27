@@ -22,7 +22,3 @@ runs:
     - name: Update path
       shell: bash
       run: echo "${HOME}/depot_tools" >> $GITHUB_PATH
-    - name: Revert 'Set is-enterprise-managed in child processes' # See: https://chromium-review.googlesource.com/c/chromium/src/+/5718759?tab=comments
-      shell: bash
-      run: git revert 9251d8d4c0debee02298fef2c0fb6cf5e362edf4
-      working-directory: /home/runner/src
