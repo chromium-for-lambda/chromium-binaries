@@ -6,7 +6,7 @@ We offer both `ARM_64` and `X86_64` binaries, as well as support for both Amazon
 
 ## Installation
 
-Using Puppeteer or Playwright? No need to add additional NPM packages to your project! 
+Already using Puppeteer or Playwright? No need to add additional NPM packages to your project! 
 
 Simply set the appropriate environment variables in Lambda and Playwright/Puppeteer will automatically download our Lambda-compatible binaries. Alternatively, you can download and install our binaries manually.
 
@@ -35,11 +35,13 @@ We strive to make compatible Chromium versions available as soon as they're offi
 <sup>*Accessing the 5 newest major Chromium release binaries requires a [pro subscription or a one-time payment](https://pro.chromiumforlambda.org).</sup>
 
 ## Examples 
-### Download a supported browser binary from your function code
+### Automatic installation
 
 Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead. On Lambda, only the /tmp directory is writable, so we need to save the browser there.
 
 #### Automatic installation with Playwright
+If you don't have Playwright installed yet: `npm install playwright-core@<playwright-version>`.
+
 Configure the following environment variables. Additionally, you can choose to configure [`PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW`](https://github.com/microsoft/playwright/blob/ec681ca78c7ce8a3a841f2583ec2a72c205cba4a/packages/playwright-core/src/server/chromium/chromium.ts#L311) which Playwright uses to activate the new headless mode.
 ```bash
 PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -72,6 +74,8 @@ export const handler = async () => {
 ```
 
 #### Automatic installation with Puppeteer >= 23
+If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
+
 Configure the following environment variables.
 ```bash
 PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -110,6 +114,8 @@ export const handler = async () => {
 ```
 
 #### Automatic installation with Puppeteer 22 ≤ x < 23
+If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
+
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -144,6 +150,8 @@ export const handler = async () => {
 ```
 
 #### Automatic installation with Puppeteer < 22
+If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
+
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
@@ -184,6 +192,7 @@ A Lambda layer is a .zip file archive that contains supplementary code or data. 
 You can download the headless_shell-*.zip that matches your Playwright / Puppeteer version and upload it as a layer.
 
 #### Layer usage with Playwright
+If you don't have Playwright installed yet: `npm install playwright-core@<playwright-version>`.
 
 Make sure the `PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW` environment variable is not set as the new headless mode is not supported via a layer.
 
@@ -208,6 +217,7 @@ export const handler = async () => {
 ```
 
 #### Layer usage with Puppeteer >= 22
+If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
 
 ```javascript
 // Make sure that:
@@ -230,6 +240,7 @@ export const handler = async () => {
 ```
 
 #### Layer usage with Puppeteer < 22
+If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
 
 ```javascript
 // Make sure that:
