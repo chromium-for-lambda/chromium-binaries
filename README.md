@@ -37,7 +37,7 @@ We strive to make compatible Chromium versions available as soon as they're offi
 ## Examples 
 ### Automatic installation
 
-Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from files.chromiumforlambda.org instead. On Lambda, only the /tmp directory is writable, so we need to save the browser there.
+Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from `files.chromiumforlambda.org` instead. On Lambda, only the /tmp directory is writable, so we need to save the browser there.
 
 #### Automatic installation with Playwright
 If you don't have Playwright installed yet: `npm install playwright-core@<playwright-version>`.
