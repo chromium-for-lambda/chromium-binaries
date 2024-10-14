@@ -17,7 +17,7 @@
     "ts-jest": "^29.2.5",
     "aws-cdk": "2.161.1",
     "ts-node": "^10.9.2",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.3"
   },
   "dependencies": {
     "@cloudsnorkel/cdk-github-runners": "^0.14.4",
