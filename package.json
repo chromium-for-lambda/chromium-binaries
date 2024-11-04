@@ -20,7 +20,7 @@
     "typescript": "~5.6.3"
   },
   "dependencies": {
-    "@cloudsnorkel/cdk-github-runners": "^0.14.5",
+    "@cloudsnorkel/cdk-github-runners": "^0.14.6",
     "aws-cdk-lib": "2.165.0",
     "constructs": "^10.4.2",
     "source-map-support": "^0.5.21"
