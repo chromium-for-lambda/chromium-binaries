@@ -219,14 +219,14 @@ export const handler = async () => {
 ```
 
 #### Layer usage with Puppeteer >= 22
-If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
+If you don't have Puppeteer installed yet: `npm install puppeteer-core@<puppeteer-version>`.
 
 ```javascript
 // Make sure that:
 // - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
 // - You've uploaded the headless_shell-*.zip file as a Lambda layer and configured your Lambda to use that layer.
 
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 export const handler = async () => {
   const browser = await puppeteer.launch({
@@ -242,14 +242,14 @@ export const handler = async () => {
 ```
 
 #### Layer usage with Puppeteer < 22
-If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-version>`.
+If you don't have Puppeteer installed yet: `npm install puppeteer-core@<puppeteer-version>`.
 
 ```javascript
 // Make sure that:
 // - You're using a supported Puppeteer version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
 // - You've uploaded the headless_shell-*.zip file as a Lambda layer and configured your Lambda to use that layer.
 
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 export const handler = async () => {
   const browser = await puppeteer.launch({
