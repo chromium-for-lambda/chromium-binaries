@@ -2,7 +2,7 @@
 
 This repository provides Chromium binaries compiled for AWS Lambda, compatible and tested with Playwright and Puppeteer. 
 
-We offer both `ARM_64` and `X86_64` binaries, as well as support for both Amazon Linux 2 (NodeJS 16 & 18) and Amazon Linux 2023 (NodeJS 20+).
+We offer both `ARM_64` and `X86_64` binaries, as well as support for both Amazon Linux 2 (NodeJS 16 & 18) and Amazon Linux 2023 (NodeJS 20 & 22).
 
 ## Installation
 
@@ -21,7 +21,7 @@ We strive to make compatible Chromium versions available as soon as they're offi
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
-| `131.0.6778` |  | `v23.8.0` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
+| `131.0.6778` | `v1.49.0` | `v23.8.0`, `v23.9.0` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `130.0.6723` | `v1.48.0`, `v1.48.1`, `v1.48.2` | `v23.6.0`, `v23.6.1`, `v23.7.0`, `v23.7.1` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `129.0.6668` | `v1.47.0`, `v1.47.1`, `v1.47.2` | `v23.4.0`, `v23.4.1`, `v23.5.0`, `v23.5.1`, `v23.5.2`, `v23.5.3` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `128.0.6613` | `v1.46.0`, `v1.46.1` | `v23.2.0`, `v23.2.1`, `v23.2.2`, `v23.3.0`, `v23.3.1` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
@@ -47,9 +47,9 @@ If you don't have Playwright installed yet: `npm install playwright-core@<playwr
 Configure the following environment variables. Additionally, you can choose to configure [`PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW`](https://github.com/microsoft/playwright/blob/ec681ca78c7ce8a3a841f2583ec2a72c205cba4a/packages/playwright-core/src/server/chromium/chromium.ts#L311) which Playwright uses to activate the new headless mode.
 ```bash
 PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
-PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20/22 on ARM64)
 PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
-PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20/20 on x86_64)
 PLAYWRIGHT_BROWSERS_PATH=/tmp
 ```
 
@@ -81,13 +81,13 @@ If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-ver
 Configure the following environment variables.
 ```bash
 PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
-PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20/22 on ARM64)
 PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
-PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_CHROME_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20/22 on x86_64)
 PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
-PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20/22 on ARM64)
 PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
-PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_CHROME_HEADLESS_SHELL_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20/22 on x86_64)
 PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true # (if you're using the new headless mode)
 PUPPETEER_SKIP_CHROME_DOWNLOAD=true # (if you're using the old headless mode)
 PUPPETEER_CACHE_DIR=/tmp
@@ -121,9 +121,9 @@ If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-ver
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
-PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20/22 on ARM64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
-PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20/22 on x86_64)
 PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true # (if you're using the new headless mode)
 PUPPETEER_SKIP_CHROME_DOWNLOAD=true # (if you're using the old headless mode)
 PUPPETEER_CACHE_DIR=/tmp
@@ -157,9 +157,9 @@ If you don't have Puppeteer installed yet: `npm install puppeteer@<puppeteer-ver
 Configure the following environment variables.
 ```bash
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
-PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20 on ARM64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20/22 on ARM64)
 PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
-PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20 on x86_64)
+PUPPETEER_DOWNLOAD_BASE_URL=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20/22 on x86_64)
 PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true # (if you're using the new headless mode)
 PUPPETEER_SKIP_CHROME_DOWNLOAD=true # (if you're using the old headless mode)
 PUPPETEER_CACHE_DIR=/tmp
@@ -288,7 +288,7 @@ If you are using Amazon Linux 2 (AL2), you should download the Chromium binaries
 
 If you're using Node.js, please note that:
 - The Node.js 16 and 18 Lambda runtimes are using Amazon Linux 2 (AL2)
-- The Node.js 20 runtime is using Amazon Linux 2023 (AL2023)
+- The Node.js 20 and 22 Lambda runtimes are using Amazon Linux 2023 (AL2023)
 
 ## Got an example codebase that is actually using this?
 Yes. Please take a look at [this](https://github.com/chromium-for-lambda/playwright-screenshot/blob/main/src/index.ts).
