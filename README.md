@@ -65,7 +65,7 @@ export const handler = async () => {
   await install(['chromium']);
 
   const browser = await chromium.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote'],
   });
 
   const page = await browser.newPage();
@@ -105,7 +105,7 @@ export const handler = async () => {
   await install()
 
   const browser = await puppeteer.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote', '--no-sandbox'],
     headless: 'shell' | true // true launches the browser in the new headless mode, 'shell' launches shell known as the old headless mode.
   });
 
@@ -141,7 +141,7 @@ export const handler = async () => {
   await install()
 
   const browser = await puppeteer.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote', '--no-sandbox'],
     headless: 'shell' | true // true launches the browser in the new headless mode, 'shell' launches shell known as the old headless mode.
   });
 
@@ -177,7 +177,7 @@ export const handler = async () => {
   await install()
 
   const browser = await puppeteer.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote', '--no-sandbox'],
     headless: true | 'new' // 'new' launches the browser in the new headless mode, true launches shell known as the old headless mode.
   });
 
@@ -207,7 +207,7 @@ import { chromium } from "playwright-core";
 
 export const handler = async () => {
   const browser = await chromium.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote'],
     executablePath: '/opt/chrome-headless-shell-linux64/chrome-headless-shell'
   });
 
@@ -230,7 +230,7 @@ import puppeteer from "puppeteer-core";
 
 export const handler = async () => {
   const browser = await puppeteer.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote', '--no-sandbox'],
     headless: 'shell',
     executablePath: '/opt/chrome-headless-shell-linux64/chrome-headless-shell'
   });
@@ -253,7 +253,7 @@ import puppeteer from "puppeteer-core";
 
 export const handler = async () => {
   const browser = await puppeteer.launch({
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-sandbox'],
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote', '--no-sandbox'],
     headless: true,
     executablePath: '/opt/chrome-headless-shell-linux64/chrome-headless-shell'
   });
