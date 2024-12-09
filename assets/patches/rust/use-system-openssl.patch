@@ -1,14 +1,14 @@
 diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
-index acf3c219f6..231c573598 100755
+index 7b40eb462a..2265ecddcf 100755
 --- a/tools/rust/build_rust.py
 +++ b/tools/rust/build_rust.py
 @@ -707,13 +707,6 @@ def main():
      else:
          libxml2_dirs = None
  
--    # TODO(crbug.com/40205621): OpenSSL is somehow already present on the Windows
--    # builder, but we should change to using a package from 3pp when it is
--    # available.
+-    # TODO(crbug.com/40205621): OpenSSL is somehow already present on the
+-    # Windows builder, but we should change to using a package from 3pp when it
+-    # is available.
 -    if (sys.platform != 'win32' and not args.sync_for_gnrt):
 -        # Building cargo depends on OpenSSL.
 -        AddOpenSSLToEnv()

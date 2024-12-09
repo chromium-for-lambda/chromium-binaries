@@ -1,9 +1,9 @@
 diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
-index f86a288b2d..7c13850c70 100755
+index 7b40eb462a..145131e648 100755
 --- a/tools/rust/build_rust.py
 +++ b/tools/rust/build_rust.py
-@@ -670,11 +670,6 @@ def main():
-     args, rest = parser.parse_known_args()
+@@ -689,11 +689,6 @@ def main():
+             return 1
  
      debian_sysroot = None
 -    if sys.platform.startswith('linux') and not args.sync_for_gnrt:
