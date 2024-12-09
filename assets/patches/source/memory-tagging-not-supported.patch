@@ -1,10 +1,10 @@
 diff --git a/base/allocator/partition_allocator/partition_alloc.gni b/base/allocator/partition_allocator/partition_alloc.gni
-index d7be302093..a9ce38e502 100644
+index 17da3298e7..3e14faad77 100644
 --- a/base/allocator/partition_allocator/partition_alloc.gni
 +++ b/base/allocator/partition_allocator/partition_alloc.gni
-@@ -32,8 +32,7 @@ if (is_nacl) {
- # Increases the size of the empty slot span ring.
- use_large_empty_slot_span_ring = is_mac
+@@ -37,8 +37,7 @@ if (is_nacl) {
+ # TODO(crbug.com/329199197): Clean this up when experiments are complete.
+ use_large_empty_slot_span_ring = true
  
 -has_memory_tagging =
 -    current_cpu == "arm64" && is_clang && !is_asan && (is_linux || is_android)
