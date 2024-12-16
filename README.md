@@ -276,6 +276,9 @@ Our binaries are compiled [in a Github action](https://github.com/chromium-for-l
 ### What is the difference between automatic and manual installation via a layer?
 Automatic installation uses environment variables to configure Playwright/Puppeteer to download Lambda-compatible binaries from our CDN. Manual installation requires downloading the correct zip file containing required dependencies and uploading to Lambda manually via a Lambda layer.
 
+### Can I use the "new" Headless mode?
+Yes.
+
 ### Why are there different Chromium binaries for Amazon Linux 2 (AL2) and Amazon Linux 2023 (AL2023)?
 The Chromium binaries for Amazon Linux 2 (AL2) and Amazon Linux 2023 (AL2023) are different because they are compiled with different versions of the Linux kernel and dependencies. 
 
