@@ -21,7 +21,7 @@ We strive to make compatible Chromium versions available as soon as they're offi
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
-| `131.0.6778` | `v1.49.0` | `v23.10.0`, `v23.10.1`, `v23.8.0`, `v23.9.0` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
+| `131.0.6778` | `v1.49.0`, `v1.49.1` | `v23.10.0`, `v23.10.1`, `v23.10.2`, `v23.10.3`, `v23.10.4`, `v23.11.0`, `v23.11.1`, `v23.8.0`, `v23.9.0` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `130.0.6723` | `v1.48.0`, `v1.48.1`, `v1.48.2` | `v23.6.0`, `v23.6.1`, `v23.7.0`, `v23.7.1` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `129.0.6668` | `v1.47.0`, `v1.47.1`, `v1.47.2` | `v23.4.0`, `v23.4.1`, `v23.5.0`, `v23.5.1`, `v23.5.2`, `v23.5.3` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `128.0.6613` | `v1.46.0`, `v1.46.1` | `v23.2.0`, `v23.2.1`, `v23.2.2`, `v23.3.0`, `v23.3.1` | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2](https://pro.chromiumforlambda.org)\*<br/>[Download AL2023](https://pro.chromiumforlambda.org)\* | 
@@ -275,6 +275,9 @@ Our binaries are compiled [in a Github action](https://github.com/chromium-for-l
 
 ### What is the difference between automatic and manual installation via a layer?
 Automatic installation uses environment variables to configure Playwright/Puppeteer to download Lambda-compatible binaries from our CDN. Manual installation requires downloading the correct zip file containing required dependencies and uploading to Lambda manually via a Lambda layer.
+
+### Can I use the "new" Headless mode?
+Yes.
 
 ### Why are there different Chromium binaries for Amazon Linux 2 (AL2) and Amazon Linux 2023 (AL2023)?
 The Chromium binaries for Amazon Linux 2 (AL2) and Amazon Linux 2023 (AL2023) are different because they are compiled with different versions of the Linux kernel and dependencies. 
