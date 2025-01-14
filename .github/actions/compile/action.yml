@@ -10,9 +10,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/revert-9251d8d4c0debee02298fef2c0fb6cf5e362edf4.patch"
-      shell: bash
-      working-directory: /home/runner/src
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/ifunc-header-patch.patch"
       shell: bash
       working-directory: /home/runner/src  
