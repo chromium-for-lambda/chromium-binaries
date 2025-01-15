@@ -67,6 +67,11 @@ for version in "${versions[@]}"; do
 
   # headless_shell
   cp -r ../packages/headless_shell-${1}-${version}/headless_shell/* "$dir/chrome-headless-shell-linux64"
+  cp -r ../packages/chrome-${1}-${version}/chrome/libEGL.so "$dir/chrome-headless-shell-linux64"
+  cp -r ../packages/chrome-${1}-${version}/chrome/libGLESv2.so "$dir/chrome-headless-shell-linux64"
+  cp -r ../packages/chrome-${1}-${version}/chrome/libvulkan.so.1 "$dir/chrome-headless-shell-linux64"
+  cp -r ../packages/chrome-${1}-${version}/chrome/libvk_swiftshader.so "$dir/chrome-headless-shell-linux64"
+  cp -r ../packages/chrome-${1}-${version}/chrome/vk_swiftshader_icd.json "$dir/chrome-headless-shell-linux64"
   cp -r ../packages/system-${1}-${version}/system/* "$dir/chrome-headless-shell-linux64"
   cp ../packages/chrome-${1}-${version}/chrome/chrome-wrapper "$dir/chrome-headless-shell-linux64/chrome-headless-shell"
   cd "$dir/chrome-headless-shell-linux64"
