@@ -23,17 +23,17 @@ for patch in "${patches[@]}"; do
   done
 done
 
-V8_REVISION=$(grep -m 1 "v8_revision': '" "DEPS" | cut -d ':' -f 2- | tr -d , | tr -d ' ' | tr -d "'")
+# V8_REVISION=$(grep -m 1 "v8_revision': '" "DEPS" | cut -d ':' -f 2- | tr -d , | tr -d ' ' | tr -d "'")
 
-cd ../v8
-git reset --hard
-git fetch
-git checkout $V8_REVISION
+# cd ../v8
+# git reset --hard
+# git fetch
+# git checkout $V8_REVISION
 
-echo "Applying v8 patches..."
-for FILE in ./../../assets/patches/v8/*.patch; do
-  echo "  Applying ${FILE}..."
-  git apply $FILE --check
-done
+# echo "Applying v8 patches..."
+# for FILE in ./../../assets/patches/v8/*.patch; do
+#   echo "  Applying ${FILE}..."
+#   git apply $FILE --check
+# done
 
 # echo "Patches applied!"
