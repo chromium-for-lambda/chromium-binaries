@@ -7,7 +7,7 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-files=($(printf "chrome-%s-x86-al2.zip chrome-%s-x86-al2023.zip chrome-%s-arm64-al2.zip chrome-%s-arm64-al2023.zip headless_shell-%s-x86-al2.zip headless_shell-%s-x86-al2023.zip headless_shell-%s-arm64-al2.zip headless_shell-%s-arm64-al2023.zip system-%s-x86-al2.zip system-%s-x86-al2023.zip system-%s-arm64-al2.zip system-%s-arm64-al2023.zip" "$1" "$1" "$1" "$1" "$1" "$1" "$1" "$1" "$1" "$1" "$1" "$1"))
+files=($(printf "chrome-%s-x86-al2023.zip chrome-%s-arm64-al2023.zip headless_shell-%s-x86-al2023.zip headless_shell-%s-arm64-al2023.zip system-%s-x86-al2023.zip system-%s-arm64-al2023.zip" "$1" "$1" "$1" "$1" "$1" "$1"))
 
 mkdir -p packages
 cd packages
@@ -35,7 +35,7 @@ cd releases
 
 stripped_version=${1%.*}
 
-versions=(arm64-al2 arm64-al2023 x86-al2 x86-al2023)
+versions=(arm64-al2023 x86-al2023)
 for version in "${versions[@]}"; do
   dir="${stripped_version}-${version}"
   

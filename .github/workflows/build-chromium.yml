@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        al_version: [al2, al2023]
+        al_version: [al2023]
         architecture: [arm64, x86]
     env:
       ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
@@ -27,17 +27,6 @@ jobs:
     steps:
       - name: Checkout this repo for Amazon Linux 2023
         uses: actions/checkout@v4
-        if: ${{ matrix.al_version == 'al2023' }}
-      - name: Checkout this repo for Amazon Linux 2
-        uses: actions/checkout@v3
-        if: ${{ matrix.al_version == 'al2' }}
-      - name: Update env for Amazon Linux 2
-        shell: bash
-        run: |
-          echo "CC=/bin/gcc10-cc" >> $GITHUB_ENV
-          echo "CXX=/bin/gcc10-c++" >> $GITHUB_ENV
-          echo "/usr/local/bin" >> $GITHUB_PATH
-        if: ${{ matrix.al_version == 'al2' }}
       - uses: ./.github/actions/install-python
       - uses: ./.github/actions/clone-source
       - uses: ./.github/actions/sync-source-dependencies
@@ -53,7 +42,7 @@ jobs:
           al_version: ${{ matrix.al_version }}
           architecture: ${{ matrix.architecture }}
       - uses: ./.github/actions/install-nodejs
-        if: ${{ matrix.architecture == 'arm64' || matrix.al_version == 'al2' }}
+        if: ${{ matrix.architecture == 'arm64' }}
         with:
           al_version: ${{ matrix.al_version }}
           architecture: ${{ matrix.architecture }}

@@ -16,14 +16,10 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/bindgen-without-sysroot.patch"
       shell: bash
       working-directory: /home/runner/src
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-arm64-al2.patch"
-      shell: bash
-      working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2' }}
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-arm64-al2023.patch"
       shell: bash
       working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'arm64' && inputs.al_version == 'al2023' }}
+      if: ${{ inputs.architecture == 'arm64' }}
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process-x86.patch"
       shell: bash
       working-directory: /home/runner/src
@@ -35,13 +31,6 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/use-system-openssl.patch"
       shell: bash
       working-directory: /home/runner/src
-    - run: |
-        sudo ln -s /usr/lib64/pkgconfig/libssl11.pc /usr/lib64/pkgconfig/libssl.pc
-        sudo ln -s /usr/lib64/pkgconfig/openssl11.pc /usr/lib64/pkgconfig/openssl.pc
-        sudo ln -s /usr/lib64/pkgconfig/libcrypto11.pc /usr/lib64/pkgconfig/libcrypto.pc
-      shell: bash
-      working-directory: /home/runner/src
-      if: ${{ inputs.al_version == 'al2' }}
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/use-bfd-linker.patch"
       shell: bash
       working-directory: /home/runner/src
