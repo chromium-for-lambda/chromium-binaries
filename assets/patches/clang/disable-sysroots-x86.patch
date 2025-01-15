@@ -1,8 +1,8 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 16a819c958..fd6edb4e74 100755
+index 02e98f6d7b..f6e16b678d 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -784,7 +784,7 @@ def main():
+@@ -810,7 +810,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -11,7 +11,7 @@ index 16a819c958..fd6edb4e74 100755
    projects = 'clang;lld'
    if not args.no_tools:
      projects += ';clang-tools-extra'
-@@ -869,19 +869,6 @@ def main():
+@@ -895,19 +895,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
@@ -29,9 +29,9 @@ index 16a819c958..fd6edb4e74 100755
 -      base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_amd64)
 -
    if sys.platform == 'win32':
-     AddGnuWinToPath()
+     AddGitForWindowsToPath()
  
-@@ -1187,53 +1174,12 @@ def main():
+@@ -1213,53 +1200,12 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):

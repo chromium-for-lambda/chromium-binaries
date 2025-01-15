@@ -1,8 +1,8 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 16a819c958..58b271fedb 100755
+index 02e98f6d7b..d95ea853eb 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -784,7 +784,7 @@ def main():
+@@ -810,7 +810,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -11,7 +11,7 @@ index 16a819c958..58b271fedb 100755
    projects = 'clang;lld'
    if not args.no_tools:
      projects += ';clang-tools-extra'
-@@ -869,19 +869,6 @@ def main():
+@@ -895,19 +895,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
@@ -29,9 +29,9 @@ index 16a819c958..58b271fedb 100755
 -      base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_amd64)
 -
    if sys.platform == 'win32':
-     AddGnuWinToPath()
+     AddGitForWindowsToPath()
  
-@@ -965,10 +952,7 @@ def main():
+@@ -991,10 +978,7 @@ def main():
        # COMPILER_RT_BUILD_BUILTINS).
        runtimes.append('compiler-rt')
  
@@ -43,7 +43,7 @@ index 16a819c958..58b271fedb 100755
      bootstrap_args = base_cmake_args + ccache_cmake_args + [
          '-DLLVM_TARGETS_TO_BUILD=' + bootstrap_targets,
          '-DLLVM_ENABLE_PROJECTS=clang;lld',
-@@ -1187,52 +1171,15 @@ def main():
+@@ -1213,52 +1197,15 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
