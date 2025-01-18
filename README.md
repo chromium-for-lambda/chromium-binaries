@@ -41,7 +41,42 @@ We strive to make compatible Chromium versions available as soon as they're offi
 
 Both Puppeteer and Playwright have built-in functionality to download a compatible browser from a CDN. Instead of using the default CDN, we set an environment variable to instruct Puppeteer / Playwright to download the browser from `files.chromiumforlambda.org` instead. On Lambda, only the /tmp directory is writable, so we need to save the browser there.
 
-#### Automatic installation with Playwright
+#### Automatic installation with Playwright >= 1.49
+If you don't have Playwright installed yet: `npm install playwright-core@<playwright-version>`.
+
+```bash
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/arm64 # (if you're using NodeJS 16/18 on ARM64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/arm64 # (if you're using NodeJS 20/22 on ARM64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2/x86_64 # (if you're using NodeJS 16/18 on x86_64)
+PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST=https://files.chromiumforlambda.org/amazon-linux-2023/x86_64 # (if you're using NodeJS 20/22 on x86_64)
+PLAYWRIGHT_BROWSERS_PATH=/tmp
+```
+
+```javascript
+// Make sure that:
+// - You're using a supported Playwright version (see https://github.com/chromium-for-lambda/binaries?tab=readme-ov-file#versions).
+// - You've set process.env.PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST and process.env.PLAYWRIGHT_BROWSERS_PATH.
+
+import { chromium } from "playwright-core";
+
+export const handler = async () => {
+  const install = require('playwright-core/lib/server').installBrowsersForNpmInstall;
+  await install(['chromium']); // only if you want to use the new headless mode
+  await install(['chromium-headless-shell']); // only if you want to use the old headless mode
+
+  const browser = await chromium.launch({
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--single-process', '--no-zygote'],
+    channel: 'chromium' // only if you want to use the new headless mode
+  });
+
+  const page = await browser.newPage();
+
+  // your Playwright code as usual
+}
+
+```
+
+#### Automatic installation with Playwright < 1.49
 If you don't have Playwright installed yet: `npm install playwright-core@<playwright-version>`.
 
 Configure the following environment variables. Additionally, you can choose to configure [`PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW`](https://github.com/microsoft/playwright/blob/ec681ca78c7ce8a3a841f2583ec2a72c205cba4a/packages/playwright-core/src/server/chromium/chromium.ts#L311) which Playwright uses to activate the new headless mode.
