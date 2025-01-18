@@ -30,4 +30,4 @@ index 718b9ef..e759883 100644
  set -- "${ARGS[@]}" "$@"
  
 -exec $CMD_PREFIX "$HERE/chrome" "$@"
-+exec $CMD_PREFIX "$HERE/headless_shell" "$@"
++exec $CMD_PREFIX "$HERE/headless_shell-bin" "$@"

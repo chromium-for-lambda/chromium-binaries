@@ -42,7 +42,6 @@ for version in "${versions[@]}"; do
   mkdir -p "$dir/chromium"
   mkdir -p "$dir/chrome-linux64" # puppeteer
   mkdir -p "$dir/chrome-headless-shell-linux64" # puppeteer
-  cd "$dir" && ln -s "chrome-linux64" "chrome-linux" && cd .. # playwright
   
   # chromium (original)
   cp -r ../packages/chrome-$1-${version}/chrome/* "$dir/chromium"
@@ -75,7 +74,9 @@ for version in "${versions[@]}"; do
   cp -r ../packages/system-${1}-${version}/system/* "$dir/chrome-headless-shell-linux64"
   cp ../packages/chrome-${1}-${version}/chrome/chrome-wrapper "$dir/chrome-headless-shell-linux64/chrome-headless-shell"
   cd "$dir/chrome-headless-shell-linux64"
+  mv headless_shell headless_shell-bin
   patch -p1 <../../../scripts/headless_shell.patch
+  cp chrome-headless-shell headless_shell
   cd ../..
 
   # create zips
@@ -90,17 +91,20 @@ for version in "${versions[@]}"; do
   fi
 
   if [ ! -f "chrome-${1}-${version}.zip" ]; then 
+    ln -s "chrome-linux64" "chrome-linux"
     zip -y -9 -r "chrome-${1}-${version}.zip" chrome-linux64 chrome-linux fonts
+    rm "chrome-linux"
   fi
 
   if [ ! -f "headless_shell-${1}-${version}.zip" ]; then 
-    zip -y -9 -r "headless_shell-${1}-${version}.zip" chrome-headless-shell-linux64 fonts
+    ln -s "chrome-headless-shell-linux64" "chrome-linux" # playwright
+    zip -y -9 -r "headless_shell-${1}-${version}.zip" chrome-headless-shell-linux64 chrome-linux fonts
+    rm "chrome-linux"
   fi
 
   rm -rf chrome-linux64
   rm -rf chrome-headless-shell-linux64
   rm -rf chromium
-  rm chrome-linux
   rm -rf fonts
 
   aws s3 sync --exclude="*" --include="*.zip" . s3://chromium-for-lambda-binaries  --profile browsrs
