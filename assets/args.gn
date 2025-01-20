@@ -20,7 +20,6 @@ enable_oop_printing = false
 build_dawn_tests = false
 dawn_enable_spirv_validation = false
 enable_media_remoting_rpc = false
-use_crash_key_stubs = true
 enable_gwp_asan = false
 enable_gwp_asan_malloc = false
 enable_gwp_asan_partitionalloc = false
