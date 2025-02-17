@@ -1,8 +1,21 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 02e98f6d7b..d95ea853eb 100755
+index 61661ff43d..c011a42b5a 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -810,7 +810,7 @@ def main():
+@@ -766,12 +766,6 @@ def main():
+     ninja_dir = os.path.join(THIRD_PARTY_DIR, 'ninja')
+     os.environ['PATH'] = ninja_dir + os.pathsep + os.environ.get('PATH', '')
+ 
+-  if sys.platform.startswith('linux'):
+-    sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
+-    sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
+-    sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
+-    sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
+-
+   if args.skip_build:
+     return 0
+ 
+@@ -786,7 +780,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -11,16 +24,11 @@ index 02e98f6d7b..d95ea853eb 100755
    projects = 'clang;lld'
    if not args.no_tools:
      projects += ';clang-tools-extra'
-@@ -895,19 +895,6 @@ def main():
+@@ -870,14 +864,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
 -  if sys.platform.startswith('linux'):
--    sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
--    sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
--    sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
--    sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
--
 -    # Add the sysroot to base_cmake_args.
 -    if platform.machine() == 'aarch64':
 -      base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_arm64)
@@ -31,19 +39,16 @@ index 02e98f6d7b..d95ea853eb 100755
    if sys.platform == 'win32':
      AddGitForWindowsToPath()
  
-@@ -991,10 +978,7 @@ def main():
+@@ -961,7 +947,7 @@ def main():
        # COMPILER_RT_BUILD_BUILTINS).
        runtimes.append('compiler-rt')
  
 -    bootstrap_targets = 'X86'
--    if sys.platform == 'darwin':
--      # Need ARM and AArch64 for building the ios clang_rt.
--      bootstrap_targets += ';ARM;AArch64'
 +    bootstrap_targets = 'AArch64'
-     bootstrap_args = base_cmake_args + ccache_cmake_args + [
-         '-DLLVM_TARGETS_TO_BUILD=' + bootstrap_targets,
-         '-DLLVM_ENABLE_PROJECTS=clang;lld',
-@@ -1213,52 +1197,15 @@ def main():
+     if sys.platform == 'darwin':
+       # Need ARM and AArch64 for building the ios clang_rt.
+       bootstrap_targets += ';ARM;AArch64'
+@@ -1183,45 +1169,8 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
@@ -89,12 +94,3 @@ index 02e98f6d7b..d95ea853eb 100755
              # Can't run tests on x86 host.
              'LLVM_INCLUDE_TESTS=OFF',
          ],
-         "profile":
--        True,
-+        False,
-         "sanitizers":
--        True,
-+        False,
-     }
-   elif sys.platform == 'win32':
-     sysroot = os.path.dirname(os.path.dirname(GetWinSDKDir()))
