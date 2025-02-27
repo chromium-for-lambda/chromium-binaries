@@ -10,9 +10,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/clang/fix-xml2-and-zstd-lib-location.patch"
-      shell: bash
-      working-directory: /home/runner/src
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/clang/disable-sysroots-aarch64.patch"
       shell: bash
       working-directory: /home/runner/src
