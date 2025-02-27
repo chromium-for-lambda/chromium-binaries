@@ -1,5 +1,5 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 61661ff43d..05c723b76f 100755
+index 61661ff43d..8e64b4b99b 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
 @@ -766,12 +766,6 @@ def main():
@@ -39,7 +39,7 @@ index 61661ff43d..05c723b76f 100755
    if sys.platform == 'win32':
      AddGitForWindowsToPath()
  
-@@ -1183,53 +1169,10 @@ def main():
+@@ -1183,53 +1169,12 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
@@ -55,9 +55,9 @@ index 61661ff43d..05c723b76f 100755
 -        True,
 -    }
      runtimes_triples_args['x86_64-unknown-linux-gnu'] = {
--        "args": [
+         "args": [
 -            'CMAKE_SYSROOT=%s' % sysroot_amd64,
--        ],
+         ],
          "profile": True,
          "sanitizers": True,
      }
