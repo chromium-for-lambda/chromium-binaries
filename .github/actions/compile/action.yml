@@ -13,9 +13,6 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/fix-disable-speech-service.patch"
       shell: bash
       working-directory: /home/runner/src
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/source/fix-mdns-api.patch"
-      shell: bash
-      working-directory: /home/runner/src
     - name: Create output dir
       shell: bash
       run: mkdir out/Default
