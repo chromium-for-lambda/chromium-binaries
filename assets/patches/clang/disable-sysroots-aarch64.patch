@@ -1,8 +1,8 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index 61661ff43d..c011a42b5a 100755
+index f554da66a4..6b7f55c4d1 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -766,12 +766,6 @@ def main():
+@@ -772,12 +772,6 @@ def main():
      ninja_dir = os.path.join(THIRD_PARTY_DIR, 'ninja')
      os.environ['PATH'] = ninja_dir + os.pathsep + os.environ.get('PATH', '')
  
@@ -15,7 +15,7 @@ index 61661ff43d..c011a42b5a 100755
    if args.skip_build:
      return 0
  
-@@ -786,7 +780,7 @@ def main():
+@@ -792,7 +786,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -24,7 +24,7 @@ index 61661ff43d..c011a42b5a 100755
    projects = 'clang;lld'
    if not args.no_tools:
      projects += ';clang-tools-extra'
-@@ -870,14 +864,6 @@ def main():
+@@ -876,14 +870,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
@@ -39,7 +39,7 @@ index 61661ff43d..c011a42b5a 100755
    if sys.platform == 'win32':
      AddGitForWindowsToPath()
  
-@@ -961,7 +947,7 @@ def main():
+@@ -967,7 +953,7 @@ def main():
        # COMPILER_RT_BUILD_BUILTINS).
        runtimes.append('compiler-rt')
  
@@ -48,14 +48,15 @@ index 61661ff43d..c011a42b5a 100755
      if sys.platform == 'darwin':
        # Need ARM and AArch64 for building the ios clang_rt.
        bootstrap_targets += ';ARM;AArch64'
-@@ -1183,45 +1169,8 @@ def main():
+@@ -1189,46 +1175,8 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
 -    runtimes_triples_args['i386-unknown-linux-gnu'] = {
 -        "args": [
 -            'CMAKE_SYSROOT=%s' % sysroot_i386,
--            # TODO(crbug.com/40242553): pass proper flags to i386 tests so they compile correctly
+-            # TODO(crbug.com/40242553): pass proper flags to i386 tests so they
+-            # compile correctly
 -            'LLVM_INCLUDE_TESTS=OFF',
 -        ],
 -        "profile":
