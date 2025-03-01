@@ -11,7 +11,6 @@ enable_media_remoting = true
 chrome_pgo_phase = 0
 enable_background_mode = false
 use_sysroot = false
-use_qt = false
 use_dbus = true
 use_bluez = true
 enable_ppapi = false
