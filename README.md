@@ -21,7 +21,7 @@ We strive to make compatible Chromium versions available as soon as they're offi
 
 | Chromium Version | Compatible Playwright Versions | Compatible Puppeteer Versions | ARM Download | X86 Download |
 | --- | --- | --- | --- | --- |
-| `134.0.6998` | `v1.51.0` | `v24.4.0` | [Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2023](https://pro.chromiumforlambda.org)\* | 
+| `134.0.6998` | `v1.51.0`, `v1.51.1` | `v24.4.0` | [Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `133.0.6943` | `v1.50.0`, `v1.50.1` | `v24.2.0`, `v24.2.1`, `v24.3.0`, `v24.3.1` | [Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `132.0.6834` |  | `v24.1.0`, `v24.1.1` | [Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2023](https://pro.chromiumforlambda.org)\* | 
 | `131.0.6778` | `v1.49.0`, `v1.49.1` | `v23.10.0`, `v23.10.1`, `v23.10.2`, `v23.10.3`, `v23.10.4`, `v23.11.0`, `v23.11.1`, `v23.8.0`, `v23.9.0`, `v24.0.0` | [Download AL2023](https://pro.chromiumforlambda.org)\* | [Download AL2023](https://pro.chromiumforlambda.org)\* | 
