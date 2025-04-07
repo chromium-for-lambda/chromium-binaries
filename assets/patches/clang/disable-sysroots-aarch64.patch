@@ -1,21 +1,22 @@
 diff --git a/tools/clang/scripts/build.py b/tools/clang/scripts/build.py
-index f554da66a4..6b7f55c4d1 100755
+index fe7897a57e..76f4886179 100755
 --- a/tools/clang/scripts/build.py
 +++ b/tools/clang/scripts/build.py
-@@ -772,12 +772,6 @@ def main():
+@@ -807,13 +807,6 @@ def main():
      ninja_dir = os.path.join(THIRD_PARTY_DIR, 'ninja')
      os.environ['PATH'] = ninja_dir + os.pathsep + os.environ.get('PATH', '')
  
 -  if sys.platform.startswith('linux'):
--    sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
--    sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
--    sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
--    sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
+-    with timer.time('get sysroots'):
+-      sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
+-      sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
+-      sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
+-      sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
 -
    if args.skip_build:
      return 0
  
-@@ -792,7 +786,7 @@ def main():
+@@ -828,7 +821,7 @@ def main():
    cxxflags = []
    ldflags = []
  
@@ -24,7 +25,7 @@ index f554da66a4..6b7f55c4d1 100755
    projects = 'clang;lld'
    if not args.no_tools:
      projects += ';clang-tools-extra'
-@@ -876,14 +870,6 @@ def main():
+@@ -913,14 +906,6 @@ def main():
      if sys.platform.startswith('linux'):
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
@@ -39,7 +40,7 @@ index f554da66a4..6b7f55c4d1 100755
    if sys.platform == 'win32':
      AddGitForWindowsToPath()
  
-@@ -967,7 +953,7 @@ def main():
+@@ -1006,7 +991,7 @@ def main():
        # COMPILER_RT_BUILD_BUILTINS).
        runtimes.append('compiler-rt')
  
@@ -48,7 +49,7 @@ index f554da66a4..6b7f55c4d1 100755
      if sys.platform == 'darwin':
        # Need ARM and AArch64 for building the ios clang_rt.
        bootstrap_targets += ';ARM;AArch64'
-@@ -1189,46 +1175,8 @@ def main():
+@@ -1237,46 +1222,8 @@ def main():
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):

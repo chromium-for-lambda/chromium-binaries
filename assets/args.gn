@@ -35,3 +35,6 @@ enable_remoting = false
 enable_reporting = false
 enable_service_discovery = false
 enable_widevine = true
+media_use_ffmpeg = true
+media_use_libvpx = true
+proprietary_codecs = true
