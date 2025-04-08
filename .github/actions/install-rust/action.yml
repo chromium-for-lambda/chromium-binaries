@@ -31,7 +31,7 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/use-system-openssl.patch"
       shell: bash
       working-directory: /home/runner/src
-    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/use-system-cmake.patch"
+    - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/configure-clang-build.patch"
       shell: bash
       working-directory: /home/runner/src
     - run: |
