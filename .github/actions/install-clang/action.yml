@@ -21,8 +21,3 @@ runs:
     - run: ./tools/clang/scripts/build.py --without-android --without-fuchsia --use-system-cmake --host-cc /bin/clang --host-cxx /bin/clang++ --with-ml-inliner-model=''
       shell: bash
       working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'arm64' }}
-    - run: ./tools/clang/scripts/build.py --without-android --without-fuchsia --with-ml-inliner-model=''
-      shell: bash
-      working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'x86' }}
