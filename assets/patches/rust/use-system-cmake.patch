@@ -1,0 +1,13 @@
+diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
+index 73f31d27de..70e181747e 100755
+--- a/tools/rust/build_rust.py
++++ b/tools/rust/build_rust.py
+@@ -784,7 +784,7 @@ def main():
+ 
+     BuildLLVMLibraries(args.skip_llvm_build)
+ 
+-    AddCMakeToPath()
++    # AddCMakeToPath()
+ 
+     # Set up config.toml in Rust source tree.
+     xpy.configure()
