@@ -19,7 +19,6 @@ runs:
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/patch-build-process.patch"
       shell: bash
       working-directory: /home/runner/src
-      if: ${{ inputs.architecture == 'arm64' }}
     - run: git apply "${GITHUB_WORKSPACE}/assets/patches/rust/use-aarch64.patch"
       shell: bash
       working-directory: /home/runner/src
