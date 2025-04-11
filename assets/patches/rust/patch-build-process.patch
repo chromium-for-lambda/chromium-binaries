@@ -1,5 +1,5 @@
 diff --git a/tools/rust/build_rust.py b/tools/rust/build_rust.py
-index 73f31d27de..3dbeb8bc09 100755
+index 73f31d27de..6a472a95e2 100755
 --- a/tools/rust/build_rust.py
 +++ b/tools/rust/build_rust.py
 @@ -530,6 +530,9 @@ def BuildLLVMLibraries(skip_build):
@@ -12,3 +12,12 @@ index 73f31d27de..3dbeb8bc09 100755
          ]
          if sys.platform.startswith('linux'):
              build_cmd.append('--without-android')
+@@ -784,7 +787,7 @@ def main():
+ 
+     BuildLLVMLibraries(args.skip_llvm_build)
+ 
+-    AddCMakeToPath()
++    # AddCMakeToPath()
+ 
+     # Set up config.toml in Rust source tree.
+     xpy.configure()
